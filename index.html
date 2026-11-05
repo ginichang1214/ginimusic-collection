@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GROOVE STATION</title>
   <meta name="description" content="GROOVE STATION：從 1960 到 2026 的 City Pop 與 Funk 名曲，依曲風、氛圍與年代篩選，一鍵到 YouTube、Spotify、Apple Music 收聽。">
-  <meta name="theme-color" content="#100f26">
+  <meta name="theme-color" content="#0e1016">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
   <meta property="og:site_name" content="GROOVE STATION">
@@ -15,30 +15,38 @@
   <meta property="og:image" content="https://ginichang1214.github.io/citypop-collection/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="GROOVE STATION：City Pop × Funk，黃昏城市與霓虹夕陽">
+  <meta property="og:image:alt" content="GROOVE STATION：City Pop × Funk，車站翻牌看板、黑膠唱片與城市夜景">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2316151f'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%23ff6fa8'/%3E%3Ccircle cx='50' cy='50' r='3' fill='%2316151f'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Righteous&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Righteous&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header class="hero">
-    <div class="glow" aria-hidden="true"></div>
-    <div class="sun" aria-hidden="true"></div>
-    <svg class="skyline" id="skyline" viewBox="0 0 1200 230" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
-    <div class="water" aria-hidden="true"></div>
+<body class="theme-station">
+  <header class="hero hero--station" id="hero">
+    <!-- 裝飾（看板、背景；隱藏的迪斯可版是鏡球和舞池）由 app.js 畫出來 -->
+    <div class="hero-art" id="hero-art" aria-hidden="true"></div>
 
-    <a class="site-switch" href="tokyo-nights/"><span class="switch-prefix">日本 City Pop 特輯：</span>TOKYO NIGHTS 東京站 →</a>
+    <a class="site-switch" href="tokyo-nights/">TOKYO NIGHTS東京站：City Pop</a>
 
     <div class="hero-text">
-      <p class="eyebrow">CITY POP × FUNK</p>
-      <h1>GROOVE STATION</h1>
+      <p class="eyebrow">
+        <span class="eyebrow-text">CITY POP × FUNK</span>
+        <span class="line-badges">
+          <span class="line-badge"><i style="background:#ff6fa8">CP</i>CITY POP LINE</span>
+          <span class="line-badge"><i style="background:#ffa36b">FK</i>FUNK LINE</span>
+        </span>
+      </p>
+      <h1>GROOVE <span class="h1-b">STATION</span></h1>
       <p class="lead">從 1960 到 2026，City Pop 與 Funk 的城市律動。</p>
-      <p class="stats" id="stats"></p>
-      <button class="btn-shuffle" id="shuffle" type="button">♫ 今晚聽哪首？</button>
+      <div class="cta">
+        <p class="stats" id="stats"></p>
+        <button class="btn-shuffle" id="shuffle" type="button">♫ 今晚聽哪首？</button>
+      </div>
     </div>
+
+    <div class="hero-board" id="hero-board"></div>
   </header>
 
   <nav class="controls" aria-label="篩選曲目">
