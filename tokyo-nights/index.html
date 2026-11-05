@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TOKYO NIGHTS 東京站</title>
+  <title>TOKYO NIGHTS 東京站｜GROOVE STATION</title>
   <meta name="description" content="TOKYO NIGHTS 東京站：從 1960 到 2026 的日本 City Pop 名曲，依氛圍與年代篩選，一鍵到 YouTube、Spotify、Apple Music 收聽。">
   <meta name="theme-color" content="#100f26">
   <meta property="og:type" content="website">
@@ -11,8 +11,8 @@
   <meta property="og:site_name" content="GROOVE STATION">
   <meta property="og:title" content="TOKYO NIGHTS 東京站">
   <meta property="og:description" content="從 1960 到 2026 的日本 City Pop 名曲，依氛圍與年代篩選，一鍵收聽。">
-  <meta property="og:url" content="https://ginichang1214.github.io/citypop-collection/tokyo-nights/">
-  <meta property="og:image" content="https://ginichang1214.github.io/citypop-collection/tokyo-nights/og-image.png">
+  <meta property="og:url" content="https://ginichang1214.github.io/ginimusic-collection/tokyo-nights/">
+  <meta property="og:image" content="https://ginichang1214.github.io/ginimusic-collection/tokyo-nights/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="TOKYO NIGHTS 東京站：黃昏城市與霓虹夕陽">
@@ -20,17 +20,14 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2316151f'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%23ff6fa8'/%3E%3Ccircle cx='50' cy='50' r='3' fill='%2316151f'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Righteous&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Righteous&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="../station/station.css">
 </head>
-<body>
+<body data-line="tokyo">
   <header class="hero">
-    <div class="glow" aria-hidden="true"></div>
-    <div class="sun" aria-hidden="true"></div>
-    <svg class="skyline" id="skyline" viewBox="0 0 1200 230" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
-    <div class="water" aria-hidden="true"></div>
-
-    <a class="site-switch" href="../">← GROOVE STATION 首頁</a>
+    <!-- 背景和最上面的車站分頁由 ../station/station.js 畫出來 -->
+    <div class="hero-art" id="hero-art" aria-hidden="true"></div>
 
     <div class="hero-text">
       <p class="eyebrow" lang="ja">シティポップ・コレクション</p>
@@ -40,6 +37,9 @@
       <button class="btn-shuffle" id="shuffle" type="button">♫ 今晚聽哪首？</button>
     </div>
   </header>
+
+  <!-- 本站時刻表：到站廣播、翻牌看板、下一站 -->
+  <section class="timetable" id="timetable" aria-label="本站時刻表"></section>
 
   <nav class="controls" aria-label="篩選曲目">
     <div class="controls-inner">
@@ -55,14 +55,7 @@
           <option value="artist">依歌手</option>
         </select>
       </label>
-      <div class="filter-row">
-        <span class="filter-label" id="mood-label">氛圍</span>
-        <div class="chips" id="moods" role="group" aria-labelledby="mood-label"></div>
-      </div>
-      <div class="filter-row">
-        <span class="filter-label" id="decade-label">年代</span>
-        <div class="chips" id="decades" role="group" aria-labelledby="decade-label"></div>
-      </div>
+      <div class="filters" id="filters"></div>
     </div>
   </nav>
 
@@ -73,12 +66,13 @@
     <noscript><p class="empty">這個網站需要開啟 JavaScript 才能顯示曲目。</p></noscript>
   </main>
 
-  <footer>
+  <footer id="footer">
     <p>曲目資訊整理自公開資料。連結會開到各平台的歌曲或搜尋頁，本站不提供音檔。</p>
-    <p>TOKYO NIGHTS 東京站是 <a href="../">GROOVE STATION</a> 的日本 City Pop 特輯。</p>
   </footer>
 
-  <script src="tracks.js"></script>
-  <script src="app.js"></script>
+  <script src="../tracks.js"></script>
+  <script src="../lines.js"></script>
+  <script src="../common.js"></script>
+  <script src="../station/station.js"></script>
 </body>
 </html>

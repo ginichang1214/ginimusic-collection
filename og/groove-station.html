@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>GROOVE STATION 分享預覽圖</title>
-<!-- 首頁的分享預覽圖範本（1200 × 630）：翻牌看板、黑膠唱片、城市夜景。用 og/render.sh 產生 og-image.png -->
+<!-- 首頁的分享預覽圖範本（1200 × 630）：站名牌、翻牌看板、黑膠唱片、城市夜景。用 og/render.sh 產生 og-image.png -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&family=Space+Mono:wght@700&display=block" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; }
@@ -47,21 +47,18 @@
   .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: linear-gradient(transparent, rgba(14, 16, 22, 0.9)); }
 
   /* 文字 */
-  .sign { position: absolute; left: 72px; top: 52px; }
-  .badges { display: flex; gap: 10px; margin-bottom: 18px; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 10px; padding: 5px 16px 5px 5px;
-    border-radius: 999px; background: rgba(255, 255, 255, 0.08);
-    font-weight: 700; font-size: 17px; letter-spacing: 0.08em;
+  .sign { position: absolute; left: 72px; top: 50px; width: 640px; }
+  h1 {
+    font-weight: 900; font-size: 126px; line-height: 0.95; letter-spacing: 0.01em; color: #fff;
+    text-shadow: 0 0 28px rgba(255, 255, 255, 0.25), 0 6px 0 rgba(5, 7, 15, 0.6);
   }
-  .badge i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #111; font-size: 13px; font-style: normal; }
-  h1 { font-weight: 900; font-size: 124px; line-height: 0.98; letter-spacing: 0.01em; }
-  h1 span { display: block; color: #ffd23f; }
-  .lead { margin-top: 18px; font-size: 27px; font-weight: 500; color: #c9cfdb; }
+  h1 span { display: block; color: #ffd23f; text-shadow: 0 0 18px rgba(255, 210, 63, 0.55), 0 0 60px rgba(255, 210, 63, 0.3), 0 6px 0 rgba(5, 7, 15, 0.6); }
+  .stripe { width: 600px; height: 11px; margin-top: 18px; border-radius: 99px; background: linear-gradient(90deg, #ff6fa8 0 25%, #4fd8e6 25% 50%, #ffa36b 50% 75%, #a98bff 75%); }
+  .lead { margin-top: 18px; font-size: 25px; font-weight: 500; line-height: 1.45; color: #d3d8e3; }
 
   /* 翻牌看板（一排） */
   .board {
-    position: absolute; left: 72px; top: 468px;
+    position: absolute; left: 72px; top: 482px;
     display: flex; align-items: center; gap: 20px;
     padding: 14px 20px; border-radius: 14px;
     background: #050608; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 0 0 2px #23262f;
@@ -86,11 +83,13 @@
           <path id="arc-bottom" d="M -80 0 A 80 80 0 0 0 80 0"/>
         </defs>
         <circle r="100" fill="#ffd23f"/>
-        <rect x="-100" y="-13" width="200" height="11" fill="#ff6fa8"/>
-        <rect x="-100" y="2" width="200" height="11" fill="#ffa36b"/>
+        <rect x="-100" y="-13" width="200" height="5.5" fill="#ff6fa8"/>
+        <rect x="-100" y="-6.5" width="200" height="5.5" fill="#4fd8e6"/>
+        <rect x="-100" y="0" width="200" height="5.5" fill="#ffa36b"/>
+        <rect x="-100" y="6.5" width="200" height="5.5" fill="#a98bff"/>
         <circle r="92" fill="none" stroke="#14161d" stroke-width="1.5" opacity="0.35"/>
         <text font-size="17" letter-spacing="1"><textPath href="#arc-top" startOffset="50%">GROOVE STATION</textPath></text>
-        <text font-size="10.5"><textPath href="#arc-bottom" startOffset="50%">CITY POP × FUNK · SIDE A · 33⅓</textPath></text>
+        <text font-size="10.5"><textPath href="#arc-bottom" startOffset="50%">4 LINES · SIDE A · 33⅓</textPath></text>
         <circle r="5" fill="#0e1016"/>
       </svg>
     </div>
@@ -101,22 +100,19 @@
   <div class="fade"></div>
 
   <div class="sign">
-    <div class="badges">
-      <span class="badge"><i style="background:#ff6fa8">CP</i>CITY POP LINE</span>
-      <span class="badge"><i style="background:#ffa36b">FK</i>FUNK LINE</span>
-    </div>
     <h1>GROOVE <span>STATION</span></h1>
-    <p class="lead">從 1960 到 2026，City Pop 與 Funk 的城市律動。</p>
+    <div class="stripe"></div>
+    <p class="lead">從 X、千禧到現在的 BETA 世代，不變的感動是屬於音樂、城市跟你我的律動。</p>
   </div>
 
   <div class="board">
     <span class="flap"><b>0</b><b>1</b></span>
-    <span class="line"><i></i>CITY POP</span>
+    <span class="line"><i></i>東京站</span>
     <span class="flap"><b>1</b><b>9</b><b>8</b><b>4</b></span>
     <span class="flap"><b>P</b><b>L</b><b>A</b><b>S</b><b>T</b><b>I</b><b>C</b><b> </b><b>L</b><b>O</b><b>V</b><b>E</b></span>
   </div>
 
-  <p class="url">ginichang1214.github.io/citypop-collection</p>
+  <p class="url">ginichang1214.github.io/ginimusic-collection</p>
 
   <script>
     // 跟首頁 app.js 的 cityNightSvg() 同一套畫法（固定種子，每次產生的畫面一樣）
@@ -146,12 +142,13 @@
           wins += `<rect x="${r(wx)}" y="${r(wy)}" width="5" height="7" opacity="${o}"/>`;
         }
       }
-      if (hgt > 320) tall.push({ x, w, y });
+      if (hgt > 300) tall.push({ x, w, y });
       x += w + 2 + rand() * 6;
     }
     for (const b of tall) extras += `<circle cx="${r(b.x + b.w / 2)}" cy="${r(b.y - 6)}" r="3.5" fill="#ff4d5e"/>`;
-    tall.slice(-3, -1).forEach((b, i) => {
-      extras += `<rect x="${r(b.x + 8)}" y="${r(b.y + 26)}" width="14" height="70" rx="3" fill="none" stroke-width="3" stroke="${i ? '#ffa36b' : '#ff6fa8'}" filter="url(#glow)"/>`;
+    const LINE_COLORS = ['#ff6fa8', '#4fd8e6', '#ffa36b', '#a98bff'];
+    tall.slice(-5, -1).forEach((b, i) => {
+      extras += `<rect x="${r(b.x + 8)}" y="${r(b.y + 26)}" width="14" height="70" rx="3" fill="none" stroke-width="3" stroke="${LINE_COLORS[i]}" filter="url(#glow)"/>`;
     });
     document.getElementById('city').outerHTML = `
       <svg class="city" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMaxYMax slice">

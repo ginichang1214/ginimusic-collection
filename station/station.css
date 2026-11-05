@@ -1,0 +1,522 @@
+/* 各車站頁面共用的樣式：主視覺版面、本站時刻表、到站廣播，以及四站各自的配色與背景。
+   版面以東京站為範本；每站在 body[data-line] 換顏色、字型和背景。 */
+
+/* ================================================================
+   主視覺版面
+   ================================================================ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(640px, 96vh, 920px);
+  padding: clamp(84px, 12vh, 124px) 16px 0;
+  text-align: center;
+}
+.hero-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.hero-text { position: relative; }
+
+.eyebrow {
+  margin: 0;
+  color: var(--eyebrow, var(--cyan));
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+}
+
+.hero h1 {
+  margin: 0.15em 0 0.25em;
+  font-family: var(--font-title, var(--font-display));
+  font-weight: 400;
+  font-size: var(--title-size, clamp(2.6rem, 9vw, 6rem));
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+}
+.hero h1 span {
+  display: block;
+  margin-top: 0.4em;
+  padding-left: 0.6em;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--station-size, 0.34em);
+  letter-spacing: 0.6em;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-shadow: none;
+}
+
+.lead {
+  margin: 0;
+  color: var(--lead, #f1e8ff);
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  text-shadow: 0 2px 12px rgba(10, 6, 30, 0.7);
+}
+
+.stats {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 20px;
+  margin: 14px 0 0;
+  padding: 0.35em 1.2em;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--night) 55%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #e6defa;
+  font-size: 0.95rem;
+}
+.stats b {
+  color: var(--yellow);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15em;
+}
+
+.btn-shuffle {
+  display: block;
+  margin: 22px auto 0;
+  padding: 0.8em 1.7em;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--btn-text, var(--ink));
+  cursor: pointer;
+  background: var(--btn, linear-gradient(90deg, var(--yellow), var(--orange), var(--pink)));
+  box-shadow: 0 10px 30px -8px var(--btn-glow, rgba(255, 111, 168, 0.8));
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-shuffle:hover { transform: translateY(-2px); }
+
+/* 星星（東京、台北、亞特蘭大共用） */
+.stars {
+  position: absolute;
+  inset: 0 0 50% 0;
+  background-image:
+    radial-gradient(1px 1px at 24px 36px, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 130px 90px, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 210px 22px, #ffe9c4 50%, transparent 51%),
+    radial-gradient(1px 1px at 268px 150px, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 70px 160px, #cfe9ff 50%, transparent 51%);
+  background-size: 300px 190px;
+  -webkit-mask-image: linear-gradient(#000 30%, transparent);
+  mask-image: linear-gradient(#000 30%, transparent);
+  opacity: 0.85;
+}
+
+/* ================================================================
+   本站時刻表：到站廣播 + 翻牌看板 + 下一站
+   ================================================================ */
+.timetable { padding: 28px 16px 8px; }
+.timetable-inner { max-width: 1180px; margin: 0 auto; }
+
+.marquee {
+  overflow: hidden;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1.5px) 0 0 / 4px 4px,
+    #050608;
+  box-shadow: inset 0 0 0 2px #23262f;
+  color: #ffb547;
+  font-family: var(--font-mono), var(--font-body);
+  font-size: 0.95rem;
+  text-shadow: 0 0 6px rgba(255, 181, 71, 0.8);
+  white-space: nowrap;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee-track span { padding-right: 4em; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.next-stop {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 14px;
+  color: var(--text);
+  text-decoration: none;
+}
+.next-stop .next-label {
+  padding: 0.1em 0.7em;
+  border-radius: 4px;
+  background: var(--c);
+  color: #14161d;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.next-stop b { color: var(--c); }
+.next-stop:hover b { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ================================================================
+   1 東京站：黃昏的城市
+   ================================================================ */
+body[data-line="tokyo"] {
+  --night: #100f26;
+  --night-2: #191838;
+  --muted: #b9b3d9;
+}
+body[data-line="tokyo"] .hero {
+  background: linear-gradient(180deg,
+      #0f0d2e 0%, #241a5c 26%, #5c2c86 44%, #b8427f 60%,
+      #ff7f72 74%, #ffb882 86%, #ffd99a 100%);
+}
+body[data-line="tokyo"] .hero h1 {
+  background: linear-gradient(180deg, #fff6c9 10%, #ffc56e 50%, #ff6fa8 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(255, 111, 168, 0.5)) drop-shadow(0 4px 0 rgba(30, 10, 60, 0.6));
+}
+
+.glow {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  width: min(120vw, 900px);
+  height: 520px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(255, 150, 120, 0.55), transparent);
+}
+.sun {
+  position: absolute;
+  left: 50%;
+  bottom: 90px;
+  width: min(52vw, 310px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fff1a8 0%, #ffc56e 38%, #ff7b7b 68%, #ff4f9a 100%);
+  -webkit-mask-image: linear-gradient(180deg,
+      #000 0 52%, transparent 52% 55%, #000 55% 62%, transparent 62% 66%,
+      #000 66% 72%, transparent 72% 77%, #000 77% 82%, transparent 82% 88%,
+      #000 88% 92%, transparent 92%);
+  mask-image: linear-gradient(180deg,
+      #000 0 52%, transparent 52% 55%, #000 55% 62%, transparent 62% 66%,
+      #000 66% 72%, transparent 72% 77%, #000 77% 82%, transparent 82% 88%,
+      #000 88% 92%, transparent 92%);
+}
+.skyline {
+  position: absolute;
+  left: 0;
+  bottom: 64px;
+  width: 100%;
+  height: clamp(150px, 22vw, 230px);
+}
+.skyline .bld { fill: #1d1240; }
+.skyline .bld.far { fill: #3a1f5e; }
+.skyline .win { fill: #ffd97a; opacity: 0.85; }
+.skyline .win.c { fill: #5fe3e8; opacity: 0.75; }
+.water {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  background: linear-gradient(180deg, #2a1748, var(--night));
+}
+.water::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(255, 140, 150, 0.55) 0 2px, transparent 2px 9px);
+  -webkit-mask-image: radial-gradient(40% 100% at 50% 0%, #000, transparent);
+  mask-image: radial-gradient(40% 100% at 50% 0%, #000, transparent);
+}
+
+/* ================================================================
+   2 台北站：藍色時刻、101、高架捷運
+   ================================================================ */
+body[data-line="taipei"] {
+  --night: #0a1424;
+  --night-2: #13213a;
+  --muted: #a9bad6;
+  --chip-on: #4fd8e6;
+  --chip-on-text: #0a1424;
+  --focus: #4fd8e6;
+  --eyebrow: #ff9fbd;
+  --btn: linear-gradient(90deg, #9ff0f7, #4fd8e6, #9f8bff);
+  --btn-glow: rgba(79, 216, 230, 0.7);
+  --lead: #eaf4ff;
+}
+body[data-line="taipei"] .hero {
+  background: linear-gradient(180deg,
+      #050b1d 0%, #0d1c44 28%, #1c386b 48%, #3d5c93 62%,
+      #9c7aa8 78%, #ee9f8e 92%, #f6c497 100%);
+}
+body[data-line="taipei"] .hero h1 {
+  background: linear-gradient(180deg, #f0fdff 10%, #8deaf3 50%, #5aa9f0 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(79, 216, 230, 0.45)) drop-shadow(0 4px 0 rgba(6, 14, 40, 0.65));
+}
+.tp-hills { position: absolute; left: 0; right: 0; bottom: 60px; width: 100%; height: 34%; }
+.tp-hills .far { fill: #2b3f6d; }
+.tp-hills .near { fill: #1a2c52; }
+.t101 {
+  position: absolute;
+  left: clamp(84%, 50% + 440px, 100% - 60px); /* 放在標題右邊，不擋字 */
+  bottom: 60px;
+  height: min(76%, 700px);
+  aspect-ratio: 1 / 5;
+  transform: translateX(-50%);
+}
+.t101 .seg { fill: url(#t101-seg); }
+.t101 .spire,
+.t101 .crown { fill: #1d3360; }
+.t101 .glass { fill: #7fa3d6; opacity: 0.35; }
+.t101 .lit { fill: #4fd8e6; filter: url(#t101-glow); animation: lit-cycle 28s linear infinite; }
+@keyframes lit-cycle {
+  0%, 100% { fill: #4fd8e6; }
+  20% { fill: #ffd97a; }
+  40% { fill: #ff8fb1; }
+  60% { fill: #b6a5ff; }
+  80% { fill: #8ef0b0; }
+}
+.tp-city { position: absolute; left: 0; bottom: 60px; width: 100%; height: clamp(110px, 15vw, 170px); }
+.tp-city .bld { fill: #0f1d3a; }
+.tp-city .bld.far { fill: #1f3461; }
+.tp-city .win { fill: #ffd98a; opacity: 0.85; }
+.tp-city .win.c { fill: #8deaf3; opacity: 0.75; }
+.mrt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  background: linear-gradient(#0c1a35, var(--night));
+}
+.mrt::before { /* 高架軌道 */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 9px;
+  background: #33497a;
+  box-shadow: 0 2px 0 #1b2a4a;
+}
+.mrt::after { /* 橋墩 */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  bottom: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 150px, #1a2a4c 150px 164px);
+  -webkit-mask-image: linear-gradient(#000, transparent);
+  mask-image: linear-gradient(#000, transparent);
+}
+.mrt-train {
+  position: absolute;
+  left: 0;
+  top: -26px;
+  width: 360px;
+  height: 26px;
+  border-radius: 12px 12px 4px 4px;
+  background: linear-gradient(#f3f6fb, #c7d1e3);
+  box-shadow: inset 0 -5px 0 #4fd8e6, 0 0 18px rgba(255, 230, 170, 0.25);
+  animation: mrt-run 18s linear infinite;
+}
+.mrt-train::before { /* 車窗 */
+  content: "";
+  position: absolute;
+  inset: 5px 12px 9px;
+  background: repeating-linear-gradient(90deg, #ffe39a 0 18px, #2d3d5a 18px 24px);
+  border-radius: 3px;
+}
+.mrt-train::after { /* 車廂接縫 */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 88px, #8492ab 88px 90px);
+}
+@keyframes mrt-run {
+  0% { transform: translateX(-380px); }
+  55%, 100% { transform: translateX(calc(100vw + 40px)); }
+}
+
+/* ================================================================
+   3 新奧爾良站：70 年代放克海報
+   ================================================================ */
+body[data-line="neworleans"] {
+  --night: #1a0d09;
+  --night-2: #2a1610;
+  --text: #fbefe0;
+  --muted: #d8bfa6;
+  --chip-on: #ffa36b;
+  --chip-on-text: #2a1208;
+  --focus: #ffa36b;
+  --eyebrow: #eea23f;
+  --font-title: "Shrikhand", var(--font-display);
+  --title-size: clamp(2.4rem, 7.6vw, 5.6rem);
+  --btn: linear-gradient(90deg, #f4dcb4, #eea23f, #d95f2e);
+  --btn-text: #2a1208;
+  --btn-glow: rgba(217, 95, 46, 0.7);
+  --lead: #fbefe0;
+}
+body[data-line="neworleans"] .hero { background: #2a1208; }
+body[data-line="neworleans"] .hero h1 {
+  line-height: 1.08;
+  color: #fbe8cf;
+  text-shadow: 3px 3px 0 #eea23f, 6px 6px 0 #d95f2e, 9px 9px 0 #a8323a, 12px 12px 0 #4a1424;
+  transform: rotate(-3deg);
+}
+body[data-line="neworleans"] .hero h1 span { margin-top: 0.7em; color: #fbe8cf; -webkit-text-fill-color: #fbe8cf; }
+.funk-cols {
+  --c: clamp(72px, 8vw, 130px);
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  display: flex;
+  transform: translateX(-50%);
+}
+.funk-col {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  width: var(--c);
+  animation: funk-scroll 18s linear infinite;
+}
+.funk-col.up { animation-direction: reverse; }
+.funk-col i {
+  flex: none;
+  width: var(--c);
+  height: var(--c);
+  margin-top: calc(var(--c) * -0.28);
+  border-radius: 50%;
+  box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.12);
+}
+@keyframes funk-scroll { to { transform: translateY(calc(var(--c) * -0.72 * 5)); } }
+.funk-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 62% 50% at 50% 38%, rgba(26, 13, 9, 0.9), rgba(26, 13, 9, 0.6) 55%, rgba(26, 13, 9, 0.12) 88%),
+    linear-gradient(transparent 62%, var(--night) 96%);
+}
+.nola-balcony { position: absolute; left: 0; bottom: 0; width: 100%; height: 96px; fill: #120806; stroke: #120806; }
+
+/* ================================================================
+   4 亞特蘭大站：黃金時刻的街頭，棕櫚樹、電線桿、遠方天際線和跳跳車
+   ================================================================ */
+body[data-line="atlanta"] {
+  --night: #15100e;
+  --night-2: #241b17;
+  --muted: #cbbcb2;
+  --chip-on: #a98bff;
+  --chip-on-text: #15100e;
+  --focus: #a98bff;
+  --eyebrow: #ffe08a;
+  --font-title: "Bungee", var(--font-display);
+  --title-size: clamp(2.3rem, 7.4vw, 5.2rem);
+  --btn: linear-gradient(90deg, #c4b5ff, #8a72ff);
+  --btn-text: #140c2a;
+  --btn-glow: rgba(138, 114, 255, 0.6);
+  --lead: #fff4e6;
+}
+/* 琥珀色的天空，太陽快落到地平線（跟東京站的紫粉色夕陽做出區隔） */
+body[data-line="atlanta"] .hero {
+  background:
+    radial-gradient(circle at 66% 84%, rgba(255, 238, 180, 0.95), rgba(255, 196, 102, 0.55) 14%, transparent 38%),
+    linear-gradient(180deg, #1c1411 0%, #3e2519 26%, #8a4523 46%, #d27a35 64%, #f2b057 80%, #f9d98f 92%, #fbe7b4 100%);
+}
+body[data-line="atlanta"] .hero h1 {
+  line-height: 1.04;
+  color: #ffffff;
+  text-shadow: 3px 3px 0 #8a72ff, 6px 6px 0 #4c48e6, 9px 9px 0 #1d1872, 0 0 30px rgba(255, 224, 138, 0.35);
+}
+body[data-line="atlanta"] .lead { text-shadow: 0 2px 10px rgba(40, 18, 8, 0.85); }
+.gh-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.gh-city { fill: #9a5a36; opacity: 0.55; }
+.gh-silhouette { fill: #1a110d; }
+.gh-wires { fill: none; stroke: #1a110d; stroke-width: 2; }
+.palms-mobile { display: none; }
+.gh-scene .fronds {
+  transform-box: fill-box;
+  transform-origin: 50% 30%;
+  animation: palm-sway 6s ease-in-out infinite alternate;
+}
+@keyframes palm-sway {
+  from { transform: rotate(-2.5deg); }
+  to { transform: rotate(2.5deg); }
+}
+.lowrider {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  width: clamp(300px, 42vw, 580px);
+  transform: translateX(-30%);
+  overflow: visible;
+}
+.lr-shadow { fill: rgba(0, 0, 0, 0.55); transform-box: fill-box; transform-origin: 20% 50%; animation: hop-shadow 3.2s ease-in-out infinite; }
+.lr-body { transform-box: view-box; transform-origin: 150px 184px; animation: hop 3.2s ease-in-out infinite; }
+/* 前輪用油壓彈起來，落地後再小跳兩下 */
+@keyframes hop {
+  0%, 44%, 100% { transform: rotate(0deg); }
+  52% { transform: rotate(-15deg); }
+  60% { transform: rotate(0deg); }
+  65% { transform: rotate(-6deg); }
+  70% { transform: rotate(0deg); }
+  74% { transform: rotate(-2deg); }
+  78% { transform: rotate(0deg); }
+}
+@keyframes hop-shadow {
+  0%, 44%, 60%, 100% { transform: scaleX(1); }
+  52% { transform: scaleX(0.82); }
+}
+body[data-line="atlanta"] .hero-art::after { /* 底部淡入頁面底色 */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 36px;
+  background: linear-gradient(transparent, var(--night));
+}
+
+/* ================================================================
+   分享預覽圖模式（網址加 ?og）：只留主視覺，剛好 1200 × 630
+   ================================================================ */
+body.og { overflow: hidden; }
+body.og .hero { height: 630px; min-height: 0; padding-top: 72px; }
+body.og .station-tabs,
+body.og .btn-shuffle,
+body.og .timetable,
+body.og .controls,
+body.og main,
+body.og footer { display: none; }
+body.og .lr-body { animation: none; transform: rotate(-13deg); } /* 預覽圖停在跳起來的瞬間 */
+body.og .lr-shadow { animation: none; transform: scaleX(0.84); }
+
+@media (max-width: 640px) {
+  .t101 { left: 86%; height: min(60%, 500px); }
+  .lowrider { transform: translateX(-50%); width: min(340px, 86vw); }
+  .palms-mobile { display: inline; }
+  .marquee { font-size: 0.85rem; }
+  .next-stop { justify-content: flex-start; }
+}
+
+@media (max-width: 520px) {
+  .hero { padding-top: 76px; }
+  .eyebrow { letter-spacing: 0.18em; font-size: 0.9rem; }
+  .hero h1 span { letter-spacing: 0.4em; padding-left: 0.4em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .funk-col,
+  .lr-body,
+  .lr-shadow,
+  .gh-scene .fronds,
+  .mrt-train,
+  .t101 .lit,
+  .marquee-track { animation: none; }
+  .btn-shuffle { transition: none; }
+}

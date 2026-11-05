@@ -1,6 +1,9 @@
+/* GROOVE STATION 首頁和各站頁面共用的樣式：
+   基本設定、車站分頁、翻牌看板、篩選列、曲目卡片、頁尾。
+   各頁用 --night、--chip-on 等變數換顏色。 */
 :root {
-  --night: #100f26;
-  --night-2: #191838;
+  --night: #0e1016;
+  --night-2: #1a1e28;
   --line: rgba(255, 255, 255, 0.1);
   --text: #f7f2ff;
   --muted: #b9b3d9;
@@ -8,10 +11,15 @@
   --orange: #ffa36b;
   --yellow: #ffd97a;
   --cyan: #5fe3e8;
+  --lavender: #b6a5ff;
   --ink: #1f0f2e;
+  --chip-on: var(--pink);
+  --chip-on-text: var(--ink);
+  --focus: var(--cyan);
   --font-body: "Noto Sans TC", "Noto Sans JP", system-ui, sans-serif;
   --font-jp: "Noto Sans JP", "Noto Sans TC", system-ui, sans-serif;
   --font-display: "Righteous", "Noto Sans TC", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -33,7 +41,7 @@ body {
 a { color: inherit; }
 
 :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -47,187 +55,143 @@ a { color: inherit; }
   white-space: nowrap;
 }
 
-/* ---------- Hero：黃昏的城市 ---------- */
-.hero {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  min-height: clamp(640px, 96vh, 920px);
-  padding: clamp(48px, 9vh, 100px) 16px 0;
-  text-align: center;
-  background: linear-gradient(180deg,
-      #0f0d2e 0%, #241a5c 26%, #5c2c86 44%, #b8427f 60%,
-      #ff7f72 74%, #ffb882 86%, #ffd99a 100%);
-}
-
-/* 星星 */
-.hero::before {
-  content: "";
+/* ---------- 車站分頁（每頁最上面） ---------- */
+.station-tabs {
   position: absolute;
-  inset: 0 0 50% 0;
-  z-index: -2;
-  background-image:
-    radial-gradient(1px 1px at 24px 36px, #fff 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 130px 90px, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 210px 22px, #ffe9c4 50%, transparent 51%),
-    radial-gradient(1px 1px at 268px 150px, #fff 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 70px 160px, #cfe9ff 50%, transparent 51%);
-  background-size: 300px 190px;
-  -webkit-mask-image: linear-gradient(#000 30%, transparent);
-  mask-image: linear-gradient(#000 30%, transparent);
-  opacity: 0.85;
-}
-
-.glow {
-  position: absolute;
-  left: 50%;
-  bottom: 40px;
-  width: min(120vw, 900px);
-  height: 520px;
-  transform: translateX(-50%);
-  z-index: -2;
-  background: radial-gradient(closest-side, rgba(255, 150, 120, 0.55), transparent);
-}
-
-.sun {
-  position: absolute;
-  left: 50%;
-  bottom: 90px;
-  width: min(52vw, 310px);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  z-index: -1;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #fff1a8 0%, #ffc56e 38%, #ff7b7b 68%, #ff4f9a 100%);
-  -webkit-mask-image: linear-gradient(180deg,
-      #000 0 52%, transparent 52% 55%, #000 55% 62%, transparent 62% 66%,
-      #000 66% 72%, transparent 72% 77%, #000 77% 82%, transparent 82% 88%,
-      #000 88% 92%, transparent 92%);
-  mask-image: linear-gradient(180deg,
-      #000 0 52%, transparent 52% 55%, #000 55% 62%, transparent 62% 66%,
-      #000 66% 72%, transparent 72% 77%, #000 77% 82%, transparent 82% 88%,
-      #000 88% 92%, transparent 92%);
-}
-
-.skyline {
-  position: absolute;
-  left: 0;
-  bottom: 64px;
-  width: 100%;
-  height: clamp(150px, 22vw, 230px);
-  z-index: -1;
-}
-.skyline .bld { fill: #1d1240; }
-.skyline .bld.far { fill: #3a1f5e; }
-.skyline .win { fill: #ffd97a; opacity: 0.85; }
-.skyline .win.c { fill: #5fe3e8; opacity: 0.75; }
-
-.water {
-  position: absolute;
+  top: 12px;
   left: 0;
   right: 0;
-  bottom: 0;
-  height: 64px;
-  z-index: -1;
-  background: linear-gradient(180deg, #2a1748, var(--night));
+  z-index: 5;
 }
-.water::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(180deg, rgba(255, 140, 150, 0.55) 0 2px, transparent 2px 9px);
-  -webkit-mask-image: radial-gradient(40% 100% at 50% 0%, #000, transparent);
-  mask-image: radial-gradient(40% 100% at 50% 0%, #000, transparent);
+.station-tabs ul {
+  display: flex;
+  gap: 8px;
+  max-width: 1212px;
+  margin: 0 auto;
+  padding: 2px 16px 6px;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
 }
-
-.hero-text { position: relative; }
-
-.eyebrow {
-  margin: 0;
-  color: var(--cyan);
-  font-size: 1rem;
-  letter-spacing: 0.3em;
-}
-
-.hero h1 {
-  margin: 0.15em 0 0.25em;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.6rem, 9vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
-  background: linear-gradient(180deg, #fff6c9 10%, #ffc56e 50%, #ff6fa8 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 18px rgba(255, 111, 168, 0.5)) drop-shadow(0 4px 0 rgba(30, 10, 60, 0.6));
-}
-.hero h1 span {
-  display: block;
-  margin-top: 0.4em;
-  padding-left: 0.6em;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.34em;
-  letter-spacing: 0.6em;
-  color: #fff;
-  -webkit-text-fill-color: #fff;
-}
-
-.lead {
-  margin: 0;
-  color: #f1e8ff;
-  font-size: clamp(1rem, 2.4vw, 1.2rem);
-  text-shadow: 0 2px 12px rgba(20, 8, 50, 0.6);
-}
-
-.stats {
+.station-tabs ul::-webkit-scrollbar { display: none; }
+.station-tabs li { flex: none; }
+.station-tabs a {
   display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px 20px;
-  margin: 14px 0 0;
-  padding: 0.35em 1.2em;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  align-items: center;
+  gap: 8px;
+  padding: 0.3em 0.95em 0.3em 0.75em;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
-  background: rgba(16, 15, 38, 0.55);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  color: #e6defa;
-  font-size: 0.95rem;
+  background: color-mix(in srgb, var(--night) 60%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
-.stats b {
-  color: var(--yellow);
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.15em;
+.station-tabs a::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 8px var(--c);
 }
-
-.btn-shuffle {
-  display: block;
-  margin: 22px auto 0;
-  padding: 0.8em 1.7em;
-  border: 0;
-  border-radius: 999px;
-  font: inherit;
+.station-tabs a:hover { border-color: var(--c); }
+.station-tabs a[aria-current="page"] {
+  border-color: var(--c);
+  background: var(--c);
+  color: #14161d;
   font-weight: 700;
-  color: var(--ink);
-  cursor: pointer;
-  background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink));
-  box-shadow: 0 10px 30px -8px rgba(255, 111, 168, 0.8);
-  transition: transform 0.2s, box-shadow 0.2s;
 }
-.btn-shuffle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 36px -8px rgba(255, 111, 168, 0.95);
+.station-tabs a[aria-current="page"]::before { background: #14161d; box-shadow: none; }
+
+/* ---------- 翻牌看板 ---------- */
+.board {
+  --flap-text: #ffd23f;
+  padding: 14px 20px 20px;
+  border-radius: 14px;
+  background: #050608;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 0 0 2px #23262f;
+  color: #f2f4f8;
+  text-align: left;
 }
+.board-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #2a2e38;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+}
+.board-clock {
+  padding: 0.1em 0.6em;
+  border-radius: 4px;
+  background: #15171d;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+.board-row {
+  display: grid;
+  grid-template-columns: 64px 170px 118px 1fr 100px;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+button.board-row { cursor: pointer; border-radius: 8px; }
+button.board-row:hover { background: rgba(255, 255, 255, 0.04); }
+.board-row + .board-row { margin-top: 6px; }
+.board-head { padding: 0 0 6px; color: #8a91a1; font-size: 0.8rem; letter-spacing: 0.12em; }
+.flap { display: flex; gap: 3px; min-width: 0; overflow: hidden; }
+.flap b {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 38px;
+  border-radius: 3px;
+  background: linear-gradient(#22252e 0 49%, #000 49% 51%, #1a1d24 51%);
+  color: var(--flap-text);
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+}
+.flap b.flipping { animation: flap 0.09s linear infinite; }
+@keyframes flap { 50% { transform: scaleY(0.6); filter: brightness(0.6); } }
+.line-tag { display: inline-flex; align-items: center; gap: 8px; min-width: 0; font-weight: 700; }
+.line-tag i { flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--c); box-shadow: 0 0 8px var(--c); }
+.line-tag span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/* 狀態燈：剛換上的那一排顯示「登車中」並閃爍 */
+.status { display: inline-flex; align-items: center; gap: 7px; color: #8fe3a4; font-size: 0.85rem; font-weight: 700; }
+.status i { width: 9px; height: 9px; border-radius: 50%; background: currentColor; box-shadow: 0 0 6px currentColor; }
+.status .boarding { display: none; }
+.is-boarding .status { color: var(--flap-text); }
+.is-boarding .status .on-time { display: none; }
+.is-boarding .status .boarding { display: inline; }
+.is-boarding .status i { animation: lamp 1s steps(2, jump-none) infinite; }
+@keyframes lamp { 50% { opacity: 0.15; } }
 
 /* ---------- 篩選列 ---------- */
 .controls {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(16, 15, 38, 0.85);
+  background: color-mix(in srgb, var(--night) 88%, transparent);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -241,6 +205,7 @@ a { color: inherit; }
   margin: 0 auto;
   padding: 14px 16px;
 }
+.filters { display: contents; }
 
 .search { flex: 1 1 220px; min-width: 0; }
 .search input,
@@ -256,7 +221,7 @@ a { color: inherit; }
 }
 .search input::placeholder { color: var(--muted); }
 .search input:focus,
-.sort select:focus { border-color: var(--cyan); outline: none; }
+.sort select:focus { border-color: var(--focus); outline: none; }
 .sort select { width: auto; cursor: pointer; }
 .sort option { background: var(--night-2); }
 
@@ -280,6 +245,8 @@ a { color: inherit; }
 }
 .chip:disabled { opacity: 0.35; cursor: not-allowed; }
 .chip {
+  display: inline-flex;
+  align-items: center;
   padding: 0.35em 0.95em;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -292,11 +259,21 @@ a { color: inherit; }
 }
 .chip:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.3); }
 .chip[aria-pressed="true"] {
-  background: var(--pink);
-  border-color: var(--pink);
-  color: var(--ink);
+  background: var(--chip-on);
+  border-color: var(--chip-on);
+  color: var(--chip-on-text);
   font-weight: 700;
 }
+/* 路線按鈕：前面有一顆路線顏色的圓點，按下去整顆變成路線色 */
+.chip-line i {
+  width: 10px;
+  height: 10px;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background: var(--c);
+}
+.chip-line[aria-pressed="true"] { background: var(--c); border-color: var(--c); color: #14161d; }
+.chip-line[aria-pressed="true"] i { background: #14161d; }
 
 /* ---------- 曲目卡片 ---------- */
 main {
@@ -390,6 +367,15 @@ main {
 
 .info { min-width: 0; }
 
+.genre {
+  margin: 0 0 0.2em;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .title {
   margin: 0;
   font-size: 1.3rem;
@@ -444,6 +430,7 @@ main {
   text-align: center;
 }
 
+/* ---------- 頁尾 ---------- */
 footer {
   padding: 36px 16px 56px;
   border-top: 1px solid var(--line);
@@ -452,11 +439,26 @@ footer {
   text-align: center;
 }
 footer p { margin: 0.3em 0; }
-footer code {
-  padding: 0.1em 0.4em;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text);
+footer a { color: var(--focus); }
+.footer-stations a,
+.footer-stations span { color: var(--c); font-weight: 700; text-decoration: none; }
+.footer-stations a:hover { text-decoration: underline; }
+.footer-stations span[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 900px) {
+  /* 看板變窄時只留年份和歌名，年份改用路線顏色 */
+  .board-row { grid-template-columns: auto 1fr; gap: 10px; }
+  .board-row > :nth-child(1),
+  .board-row > :nth-child(2),
+  .board-row > :nth-child(5) { display: none; }
+  .board-row .year .flap b { color: var(--line, var(--flap-text)); }
+}
+
+@media (max-width: 640px) {
+  .board { padding: 12px 12px 14px; }
+  .flap b { width: 17px; height: 28px; font-size: 15px; }
+  .flap { gap: 2px; }
+  .board-top { font-size: 0.72rem; }
 }
 
 @media (max-width: 520px) {
@@ -467,31 +469,14 @@ footer code {
   .controls-inner { gap: 10px; }
   .sort { flex: 1 1 100%; }
   .sort select { width: 100%; }
+  .station-tabs a { font-size: 0.78rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .card:hover .disc,
-  .card.spotlight .disc { animation: none; }
-  .card, .btn-shuffle { transition: none; }
+  .card.spotlight .disc,
+  .flap b.flipping,
+  .is-boarding .status i { animation: none; }
+  .card { transition: none; }
 }
-
-/* 切換到另一個頁面的連結（左上角） */
-.site-switch {
-  position: absolute;
-  top: 14px;
-  left: 16px;
-  z-index: 3;
-  padding: 0.35em 0.95em;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  background: rgba(16, 15, 38, 0.5);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  color: var(--text);
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: background 0.2s, border-color 0.2s;
-}
-.site-switch:hover { background: rgba(16, 15, 38, 0.8); border-color: var(--cyan); }
-footer a { color: var(--cyan); }

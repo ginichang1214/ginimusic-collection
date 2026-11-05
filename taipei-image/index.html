@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TAIPEI IMAGE 台北站｜GROOVE STATION</title>
+  <meta name="description" content="TAIPEI IMAGE 台北站：2000 年代到現在的華語流行，台北二十多年來的印象故事，依曲風、氛圍與年代篩選，一鍵到 YouTube、Spotify、Apple Music 收聽。">
+  <meta name="theme-color" content="#0a1424">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="GROOVE STATION">
+  <meta property="og:title" content="TAIPEI IMAGE 台北站">
+  <meta property="og:description" content="從 KTV 包廂到 Live House，台北二十多年來的印象故事，一鍵收聽。">
+  <meta property="og:url" content="https://ginichang1214.github.io/ginimusic-collection/taipei-image/">
+  <meta property="og:image" content="https://ginichang1214.github.io/ginimusic-collection/taipei-image/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TAIPEI IMAGE 台北站：藍色時刻的台北 101 與高架捷運">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2316151f'/%3E%3Ccircle cx='50' cy='50' r='18' fill='%234fd8e6'/%3E%3Ccircle cx='50' cy='50' r='3' fill='%2316151f'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Righteous&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="../station/station.css">
+</head>
+<body data-line="taipei">
+  <header class="hero">
+    <!-- 背景和最上面的車站分頁由 ../station/station.js 畫出來 -->
+    <div class="hero-art" id="hero-art" aria-hidden="true"></div>
+
+    <div class="hero-text">
+      <p class="eyebrow">華語 ‧ 流行</p>
+      <h1>TAIPEI IMAGE<span>台北站</span></h1>
+      <p class="lead">從 KTV 包廂到 Live House，台北二十多年來的印象故事。</p>
+      <p class="stats" id="stats"></p>
+      <button class="btn-shuffle" id="shuffle" type="button">♫ 今晚聽哪首？</button>
+    </div>
+  </header>
+
+  <!-- 本站時刻表：到站廣播、翻牌看板、下一站 -->
+  <section class="timetable" id="timetable" aria-label="本站時刻表"></section>
+
+  <nav class="controls" aria-label="篩選曲目">
+    <div class="controls-inner">
+      <label class="search">
+        <span class="visually-hidden">搜尋</span>
+        <input id="search" type="search" placeholder="搜尋歌名、歌手或專輯…" autocomplete="off">
+      </label>
+      <label class="sort">
+        <span class="visually-hidden">排序</span>
+        <select id="sort">
+          <option value="year-asc">年份：舊 → 新</option>
+          <option value="year-desc">年份：新 → 舊</option>
+          <option value="artist">依歌手</option>
+        </select>
+      </label>
+      <div class="filters" id="filters"></div>
+    </div>
+  </nav>
+
+  <main>
+    <p class="count" id="count" aria-live="polite"></p>
+    <ul class="grid" id="grid"></ul>
+    <p class="empty" id="empty" hidden>找不到符合的歌曲，換個關鍵字或氛圍試試？</p>
+    <noscript><p class="empty">這個網站需要開啟 JavaScript 才能顯示曲目。</p></noscript>
+  </main>
+
+  <footer id="footer">
+    <p>曲目資訊整理自公開資料。連結會開到各平台的歌曲或搜尋頁，本站不提供音檔。</p>
+  </footer>
+
+  <script src="../tracks.js"></script>
+  <script src="../lines.js"></script>
+  <script src="../common.js"></script>
+  <script src="../station/station.js"></script>
+</body>
+</html>
