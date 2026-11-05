@@ -1,0 +1,146 @@
+<!doctype html>
+<!--
+  分享預覽圖（Open Graph）的範本，固定 1200 × 630。
+  用網址參數換文字：e = 上方小字、t = 大標題、s = 副標題（選填）、l = 下方說明
+  產生方式見 README 的「重新產生分享預覽圖」。
+-->
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>OG image</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&family=Noto+Sans+TC:wght@500;700&family=Righteous&display=block" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+    body {
+      position: relative;
+      font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+      color: #f7f2ff;
+      background: linear-gradient(180deg,
+        #0f0d2e 0%, #241a5c 24%, #5c2c86 42%, #b8427f 58%,
+        #ff7f72 72%, #ffb882 85%, #ffd99a 100%);
+    }
+    .stars {
+      position: absolute; inset: 0 0 45% 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 24px 36px, #fff 50%, transparent 51%),
+        radial-gradient(2px 2px at 130px 90px, #fff 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 210px 22px, #ffe9c4 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 268px 150px, #fff 50%, transparent 51%),
+        radial-gradient(2px 2px at 70px 160px, #cfe9ff 50%, transparent 51%);
+      background-size: 300px 190px;
+      -webkit-mask-image: linear-gradient(#000 30%, transparent);
+      opacity: 0.85;
+    }
+    .glow {
+      position: absolute; left: 50%; bottom: 20px;
+      width: 900px; height: 460px; transform: translateX(-50%);
+      background: radial-gradient(closest-side, rgba(255, 150, 120, 0.55), transparent);
+    }
+    .sun {
+      position: absolute; left: 50%; bottom: 40px;
+      width: 300px; height: 300px; transform: translateX(-50%);
+      border-radius: 50%;
+      background: linear-gradient(180deg, #fff1a8 0%, #ffc56e 38%, #ff7b7b 68%, #ff4f9a 100%);
+      -webkit-mask-image: linear-gradient(180deg,
+        #000 0 52%, transparent 52% 55%, #000 55% 62%, transparent 62% 66%,
+        #000 66% 72%, transparent 72% 77%, #000 77% 82%, transparent 82% 88%,
+        #000 88% 92%, transparent 92%);
+    }
+    .skyline { position: absolute; left: 0; bottom: 52px; width: 1200px; height: 170px; }
+    .skyline .bld { fill: #1d1240; }
+    .skyline .bld.far { fill: #3a1f5e; }
+    .skyline .win { fill: #ffd97a; opacity: 0.85; }
+    .skyline .win.c { fill: #5fe3e8; opacity: 0.75; }
+    .water {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 52px;
+      background: linear-gradient(180deg, #2a1748, #100f26);
+    }
+    .water::before {
+      content: ""; position: absolute; inset: 0;
+      background: repeating-linear-gradient(180deg, rgba(255, 140, 150, 0.55) 0 2px, transparent 2px 9px);
+      -webkit-mask-image: radial-gradient(40% 100% at 50% 0%, #000, transparent);
+    }
+    .text {
+      position: absolute; left: 0; right: 0; top: 58px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .eyebrow {
+      color: #5fe3e8; font-size: 26px; font-weight: 700; letter-spacing: 0.35em;
+      padding-left: 0.35em;
+    }
+    .title {
+      margin-top: 14px;
+      font-family: "Righteous", sans-serif; font-weight: 400;
+      font-size: 108px; line-height: 1; letter-spacing: 0.02em;
+      background: linear-gradient(180deg, #fff6c9 10%, #ffc56e 50%, #ff6fa8 90%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      filter: drop-shadow(0 0 22px rgba(255, 111, 168, 0.55)) drop-shadow(0 5px 0 rgba(30, 10, 60, 0.6));
+    }
+    .sub {
+      margin-top: 14px; font-size: 34px; font-weight: 700;
+      letter-spacing: 0.6em; padding-left: 0.6em;
+      text-shadow: 0 2px 12px rgba(20, 8, 50, 0.7);
+    }
+    .line {
+      margin-top: 22px; padding: 8px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 999px;
+      background: rgba(16, 15, 38, 0.55);
+      font-size: 26px; font-weight: 500; letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="glow"></div>
+  <div class="sun"></div>
+  <svg class="skyline" id="skyline" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax slice"></svg>
+  <div class="water"></div>
+
+  <div class="text">
+    <p class="eyebrow" id="e"></p>
+    <h1 class="title" id="t"></h1>
+    <p class="sub" id="s"></p>
+    <p class="line" id="l"></p>
+  </div>
+
+  <script>
+    const p = new URLSearchParams(location.search);
+    const set = (id, fallback) => {
+      const el = document.getElementById(id);
+      const v = p.get(id) ?? fallback;
+      if (v) el.textContent = v; else el.remove();
+    };
+    set('e', 'CITY POP × FUNK');
+    set('t', 'GROOVE STATION');
+    set('s', '');
+    set('l', '1960 — 2026');
+    if (/[぀-ヿ]/.test(p.get('e') || '')) document.getElementById('e').lang = 'ja';
+
+    // 和網站同一套天際線：固定亂數種子
+    (() => {
+      const W = 1200, H = 170;
+      let seed = 11;
+      const rand = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+      const parts = [];
+      for (let x = 0; x < W;) {
+        const w = 50 + rand() * 80, hgt = 70 + rand() * 90;
+        parts.push(`<rect class="bld far" x="${x}" y="${H - hgt}" width="${w}" height="${hgt}"/>`);
+        x += w + rand() * 10;
+      }
+      for (let x = -10; x < W;) {
+        const w = 40 + rand() * 70, hgt = 40 + rand() * 115, y = H - hgt;
+        parts.push(`<rect class="bld" x="${x}" y="${y}" width="${w}" height="${hgt}"/>`);
+        if (hgt > 115 && rand() > 0.4) parts.push(`<rect class="bld" x="${x + w / 2 - 1}" y="${y - 18}" width="2" height="18"/>`);
+        for (let wy = y + 10; wy < H - 8; wy += 14) {
+          for (let wx = x + 8; wx < x + w - 10; wx += 11) {
+            if (rand() > 0.64) parts.push(`<rect class="win${rand() > 0.7 ? ' c' : ''}" x="${wx}" y="${wy}" width="4" height="6"/>`);
+          }
+        }
+        x += w + 2 + rand() * 6;
+      }
+      document.getElementById('skyline').innerHTML = parts.join('');
+    })();
+  </script>
+</body>
+</html>

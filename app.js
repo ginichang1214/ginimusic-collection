@@ -3,7 +3,9 @@
 
   const tracks = window.CITY_POP_TRACKS || [];
   const ALL = '全部';
-  const MOODS = ['夜晚', '夏日', '都會', '戀愛', '兜風'];
+  const MOODS = ['夜晚', '夏日', '都會', '戀愛', '兜風', '派對'];
+  // 曲風照資料裡第一次出現的順序排；tracks.js 加了新曲風，按鈕會自動出現
+  const GENRES = [...new Set(tracks.map((t) => t.genre || 'City Pop'))];
   const YEAR_MIN = 1960;
   const YEAR_MAX = 2026;
   const DECADES = [];
@@ -24,11 +26,12 @@
     artist: (a, b) => a.artistEn.localeCompare(b.artistEn) || a.year - b.year,
   };
 
-  const state = { query: '', mood: ALL, decade: ALL, sort: 'year-asc' };
+  const state = { query: '', genre: ALL, mood: ALL, decade: ALL, sort: 'year-asc' };
 
   const $ = (sel) => document.querySelector(sel);
   const els = {
     grid: $('#grid'),
+    genres: $('#genres'),
     moods: $('#moods'),
     decades: $('#decades'),
     search: $('#search'),
@@ -58,9 +61,11 @@
   const decadeOf = (year) => Math.floor(year / 10) * 10;
   const decadeLabel = (d) => (d < 2000 ? `${String(d).slice(2)} 年代` : `${d} 年代`);
   const same = (a, b) => a.toLowerCase() === b.toLowerCase();
+  const hasJapanese = (s) => /[぀-ヿ㐀-鿿]/.test(s);
 
   // 每首歌固定一個唱片標籤顏色；年份超出範圍時在主控台提醒
   tracks.forEach((t, i) => {
+    t.genre = t.genre || 'City Pop';
     t.accent = ACCENTS[i % ACCENTS.length];
     if (t.year < YEAR_MIN || t.year > YEAR_MAX) {
       console.warn(`「${t.title}」的年份 ${t.year} 不在 ${YEAR_MIN}–${YEAR_MAX} 之間，年代篩選會找不到它。`);
@@ -96,7 +101,7 @@
   }
 
   function syncChips() {
-    for (const [container, key] of [[els.moods, 'mood'], [els.decades, 'decade']]) {
+    for (const [container, key] of [[els.genres, 'genre'], [els.moods, 'mood'], [els.decades, 'decade']]) {
       for (const chip of container.children) {
         chip.setAttribute('aria-pressed', String(chip.dataset.value === String(state[key])));
       }
@@ -104,6 +109,10 @@
   }
 
   function renderChips() {
+    renderChipGroup(els.genres, 'genre', [
+      { value: ALL, label: ALL },
+      ...GENRES.map((g) => ({ value: g, label: g, count: tracks.filter((t) => t.genre === g).length })),
+    ]);
     renderChipGroup(els.moods, 'mood', [
       { value: ALL, label: ALL },
       ...MOODS.map((m) => ({ value: m, label: `#${m}` })),
@@ -124,10 +133,11 @@
     return h('li', { class: 'card', id: `track-${t.id}`, tabindex: '-1', style: `--accent:${t.accent}` },
       h('div', { class: 'disc', 'aria-hidden': 'true' }, h('span', { class: 'label' }, String(t.year))),
       h('div', { class: 'info' },
-        h('h3', { class: 'title', lang: 'ja' }, t.title),
+        h('p', { class: 'genre' }, t.genre),
+        h('h3', { class: 'title', lang: hasJapanese(t.title) ? 'ja' : 'en' }, t.title),
         same(t.romaji, t.title) ? null : h('p', { class: 'romaji' }, t.romaji),
         h('p', { class: 'artist' },
-          h('span', { lang: 'ja' }, t.artist),
+          h('span', { lang: hasJapanese(t.artist) ? 'ja' : 'en' }, t.artist),
           same(t.artistEn, t.artist) ? null : h('span', { class: 'en' }, ` · ${t.artistEn}`),
         ),
         h('p', { class: 'meta' }, `${t.year} · ${t.album ? `《${t.album}》` : '單曲'}`),
@@ -148,9 +158,10 @@
   function filtered() {
     const q = state.query.trim().toLowerCase();
     return tracks
+      .filter((t) => state.genre === ALL || t.genre === state.genre)
       .filter((t) => state.mood === ALL || t.moods.includes(state.mood))
       .filter((t) => state.decade === ALL || decadeOf(t.year) === state.decade)
-      .filter((t) => !q || [t.title, t.romaji, t.artist, t.artistEn, t.album || '']
+      .filter((t) => !q || [t.title, t.romaji, t.artist, t.artistEn, t.album || '', t.genre]
         .some((s) => s.toLowerCase().includes(q)))
       .sort(SORTERS[state.sort]);
   }
@@ -164,6 +175,7 @@
 
   function resetFilters() {
     state.query = '';
+    state.genre = ALL;
     state.mood = ALL;
     state.decade = ALL;
     els.search.value = '';

@@ -1,12 +1,14 @@
-// City Pop 曲目資料
+// GROOVE STATION 曲目資料（City Pop、Funk）
 // 新增歌曲：照同樣格式在陣列裡加一筆即可，id 不可重複。
 // year 可填 1960 到 2026，網站會自動分到對應的年代篩選。
-// moods 可用：夜晚、夏日、都會、戀愛、兜風
+// genre 可用：City Pop、Funk（要加新曲風，直接填新名稱，篩選按鈕會自動出現）
+// moods 可用：夜晚、夏日、都會、戀愛、兜風、派對
 // album 若是單曲沒有收錄專輯，填 null。
 // 選填 youtube / spotify / appleMusic：填了就直接連到那首歌，沒填就連到平台搜尋頁。
 window.CITY_POP_TRACKS = [
   {
     id: 'plastic-love',
+    genre: 'City Pop',
     title: 'プラスティック・ラブ',
     romaji: 'Plastic Love',
     artist: '竹内まりや',
@@ -18,6 +20,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'mayonaka-no-door',
+    genre: 'City Pop',
     title: '真夜中のドア〜stay with me',
     romaji: 'Mayonaka no Door ~Stay With Me',
     artist: '松原みき',
@@ -29,6 +32,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'ride-on-time',
+    genre: 'City Pop',
     title: 'RIDE ON TIME',
     romaji: 'Ride on Time',
     artist: '山下達郎',
@@ -40,6 +44,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'sparkle',
+    genre: 'City Pop',
     title: 'SPARKLE',
     romaji: 'Sparkle',
     artist: '山下達郎',
@@ -51,6 +56,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'tokai',
+    genre: 'City Pop',
     title: '都会',
     romaji: 'Tokai',
     artist: '大貫妙子',
@@ -62,6 +68,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: '4am',
+    genre: 'City Pop',
     title: '4:00A.M.',
     romaji: '4:00 A.M.',
     artist: '大貫妙子',
@@ -73,6 +80,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'kanashimi-ga-tomaranai',
+    genre: 'City Pop',
     title: '悲しみがとまらない',
     romaji: 'Kanashimi ga Tomaranai',
     artist: '杏里',
@@ -84,6 +92,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'remember-summer-days',
+    genre: 'City Pop',
     title: 'Remember Summer Days',
     romaji: 'Remember Summer Days',
     artist: '杏里',
@@ -95,6 +104,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'midnight-pretenders',
+    genre: 'City Pop',
     title: 'Midnight Pretenders',
     romaji: 'Midnight Pretenders',
     artist: '亜蘭知子',
@@ -106,6 +116,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'mayonaka-no-joke',
+    genre: 'City Pop',
     title: '真夜中のジョーク',
     romaji: 'Mayonaka no Joke',
     artist: '間宮貴子',
@@ -117,6 +128,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'telephone-number',
+    genre: 'City Pop',
     title: 'テレフォン・ナンバー',
     romaji: 'Telephone Number',
     artist: '大橋純子',
@@ -128,6 +140,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'kimi-wa-tennen-shoku',
+    genre: 'City Pop',
     title: '君は天然色',
     romaji: 'Kimi wa Tennen Shoku',
     artist: '大滝詠一',
@@ -139,6 +152,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'ruby-no-yubiwa',
+    genre: 'City Pop',
     title: 'ルビーの指環',
     romaji: 'Ruby no Yubiwa',
     artist: '寺尾聰',
@@ -150,6 +164,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'flyday-chinatown',
+    genre: 'City Pop',
     title: 'フライディ・チャイナタウン',
     romaji: 'Flyday Chinatown',
     artist: '泰葉',
@@ -161,6 +176,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'chuo-freeway',
+    genre: 'City Pop',
     title: '中央フリーウェイ',
     romaji: 'Chuo Freeway',
     artist: '荒井由実',
@@ -172,6 +188,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'futari-no-natsu-monogatari',
+    genre: 'City Pop',
     title: 'ふたりの夏物語 NEVER ENDING SUMMER',
     romaji: 'Futari no Natsu Monogatari',
     artist: '杉山清貴&オメガトライブ',
@@ -183,6 +200,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'september',
+    genre: 'City Pop',
     title: 'September',
     romaji: 'September',
     artist: '竹内まりや',
@@ -194,6 +212,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'midnight-cruisin',
+    genre: 'City Pop',
     title: "MIDNIGHT CRUISIN'",
     romaji: "Midnight Cruisin'",
     artist: '濱田金吾',
@@ -207,6 +226,7 @@ window.CITY_POP_TRACKS = [
   // ---------- 60 年代：歌謠曲裡的都會源頭 ----------
   {
     id: 'blue-light-yokohama',
+    genre: 'City Pop',
     title: 'ブルー・ライト・ヨコハマ',
     romaji: 'Blue Light Yokohama',
     artist: 'いしだあゆみ',
@@ -218,6 +238,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'yoake-no-scat',
+    genre: 'City Pop',
     title: '夜明けのスキャット',
     romaji: 'Yoake no Scat',
     artist: '由紀さおり',
@@ -231,6 +252,7 @@ window.CITY_POP_TRACKS = [
   // ---------- 70 年代：City Pop 的原點 ----------
   {
     id: 'kaze-wo-atsumete',
+    genre: 'City Pop',
     title: '風をあつめて',
     romaji: 'Kaze wo Atsumete',
     artist: 'はっぴいえんど',
@@ -242,6 +264,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'down-town',
+    genre: 'City Pop',
     title: 'DOWN TOWN',
     romaji: 'Down Town',
     artist: 'シュガー・ベイブ',
@@ -255,6 +278,7 @@ window.CITY_POP_TRACKS = [
   // ---------- 90 年代：澀谷系與都會靈魂樂 ----------
   {
     id: 'seppun',
+    genre: 'City Pop',
     title: '接吻 -kiss-',
     romaji: 'Seppun -kiss-',
     artist: 'ORIGINAL LOVE',
@@ -266,6 +290,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'tokyo-wa-yoru-no-shichiji',
+    genre: 'City Pop',
     title: '東京は夜の七時',
     romaji: 'Tokyo wa Yoru no Shichiji',
     artist: 'ピチカート・ファイヴ',
@@ -277,6 +302,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'konya-wa-boogie-back',
+    genre: 'City Pop',
     title: '今夜はブギー・バック',
     romaji: 'Konya wa Boogie Back',
     artist: 'スチャダラパー・小沢健二',
@@ -290,6 +316,7 @@ window.CITY_POP_TRACKS = [
   // ---------- 2000 年代 ----------
   {
     id: 'aliens',
+    genre: 'City Pop',
     title: 'エイリアンズ',
     romaji: 'Aliens',
     artist: 'キリンジ',
@@ -303,6 +330,7 @@ window.CITY_POP_TRACKS = [
   // ---------- 2010 年代：新世代 City Pop ----------
   {
     id: 'climax-night',
+    genre: 'City Pop',
     title: 'Climax Night',
     romaji: 'Climax Night',
     artist: 'Yogee New Waves',
@@ -314,6 +342,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'summer-soul',
+    genre: 'City Pop',
     title: 'Summer Soul',
     romaji: 'Summer Soul',
     artist: 'cero',
@@ -325,6 +354,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'stay-tune',
+    genre: 'City Pop',
     title: 'STAY TUNE',
     romaji: 'Stay Tune',
     artist: 'Suchmos',
@@ -336,6 +366,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'tokyo-flash',
+    genre: 'City Pop',
     title: '東京フラッシュ',
     romaji: 'Tokyo Flash',
     artist: 'Vaundy',
@@ -349,6 +380,7 @@ window.CITY_POP_TRACKS = [
   // ---------- 2020 年代 ----------
   {
     id: 'kanashii-kurai-diamond',
+    genre: 'City Pop',
     title: '悲しいくらいダイヤモンド',
     romaji: 'Kanashii Kurai Diamond',
     artist: '流線形/一十三十一',
@@ -360,6 +392,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'loves-on-fire',
+    genre: 'City Pop',
     title: "LOVE'S ON FIRE",
     romaji: "Love's on Fire",
     artist: '山下達郎',
@@ -371,6 +404,7 @@ window.CITY_POP_TRACKS = [
   },
   {
     id: 'taxi-boy',
+    genre: 'City Pop',
     title: 'タクシー・ボーイ',
     romaji: 'Taxi Boy',
     artist: 'Japanese City Pop',
@@ -380,5 +414,371 @@ window.CITY_POP_TRACKS = [
     moods: ['都會', '夜晚'],
     note: '2025 年 12 月發行的新世代 City Pop，收錄在專輯《Plastic》。',
     youtube: 'https://music.youtube.com/watch?v=yeBXtMzXyqs',
+  },
+
+  // =====================================================================
+  //  FUNK
+  // =====================================================================
+
+  // ---------- 60 年代：放克誕生 ----------
+  {
+    id: 'papas-got-a-brand-new-bag',
+    genre: 'Funk',
+    title: "Papa's Got a Brand New Bag",
+    romaji: "Papa's Got a Brand New Bag",
+    artist: 'James Brown',
+    artistEn: 'James Brown',
+    year: 1965,
+    album: null,
+    moods: ['派對'],
+    note: '拿下 1966 年葛萊美最佳 R&B 錄音，常被視為 Funk 的起點。',
+  },
+  {
+    id: 'cold-sweat',
+    genre: 'Funk',
+    title: 'Cold Sweat',
+    romaji: 'Cold Sweat',
+    artist: 'James Brown',
+    artistEn: 'James Brown',
+    year: 1967,
+    album: 'Cold Sweat',
+    moods: ['派對', '夜晚'],
+    note: '把節奏擺在旋律前面的轉捩點，後來被無數嘻哈作品取樣。',
+  },
+  {
+    id: 'dance-to-the-music',
+    genre: 'Funk',
+    title: 'Dance to the Music',
+    romaji: 'Dance to the Music',
+    artist: 'Sly & the Family Stone',
+    artistEn: 'Sly & the Family Stone',
+    year: 1968,
+    album: 'Dance to the Music',
+    moods: ['派對'],
+    note: '不分膚色、男女混編的樂團，把迷幻搖滾和靈魂樂揉進放克。',
+  },
+  {
+    id: 'cissy-strut',
+    genre: 'Funk',
+    title: 'Cissy Strut',
+    romaji: 'Cissy Strut',
+    artist: 'The Meters',
+    artistEn: 'The Meters',
+    year: 1969,
+    album: 'The Meters',
+    moods: ['都會', '派對'],
+    note: '紐奧良放克的代表，沒有歌詞的純演奏，鼓點鬆而有彈性。',
+  },
+
+  // ---------- 70 年代：放克黃金期 ----------
+  {
+    id: 'sex-machine',
+    genre: 'Funk',
+    title: 'Get Up (I Feel Like Being a) Sex Machine',
+    romaji: 'Get Up (I Feel Like Being a) Sex Machine',
+    artist: 'James Brown',
+    artistEn: 'James Brown',
+    year: 1970,
+    album: null,
+    moods: ['派對'],
+    note: "和新樂團 The J.B.'s 合作，Bootsy Collins 的貝斯撐起整首律動。",
+  },
+  {
+    id: 'superstition',
+    genre: 'Funk',
+    title: 'Superstition',
+    romaji: 'Superstition',
+    artist: 'Stevie Wonder',
+    artistEn: 'Stevie Wonder',
+    year: 1972,
+    album: 'Talking Book',
+    moods: ['都會', '夜晚'],
+    note: '開頭那段 Clavinet 鍵盤一響，就是放克最經典的聲音之一。',
+  },
+  {
+    id: 'jungle-boogie',
+    genre: 'Funk',
+    title: 'Jungle Boogie',
+    romaji: 'Jungle Boogie',
+    artist: 'Kool & the Gang',
+    artistEn: 'Kool & the Gang',
+    year: 1973,
+    album: 'Wild and Peaceful',
+    moods: ['派對'],
+    note: '1994 年電影《黑色追緝令》又把它帶紅了一次。',
+  },
+  {
+    id: 'chameleon',
+    genre: 'Funk',
+    title: 'Chameleon',
+    romaji: 'Chameleon',
+    artist: 'Herbie Hancock',
+    artistEn: 'Herbie Hancock',
+    year: 1973,
+    album: 'Head Hunters',
+    moods: ['夜晚', '都會'],
+    note: '爵士鋼琴家改玩合成器放克，《Head Hunters》成為當時最暢銷的爵士專輯之一。',
+  },
+  {
+    id: 'what-is-hip',
+    genre: 'Funk',
+    title: 'What Is Hip?',
+    romaji: 'What Is Hip?',
+    artist: 'Tower of Power',
+    artistEn: 'Tower of Power',
+    year: 1973,
+    album: 'Tower of Power',
+    moods: ['都會', '派對'],
+    note: '奧克蘭樂團招牌的銅管組，加上又密又快的十六分音符律動。',
+  },
+  {
+    id: 'tell-me-something-good',
+    genre: 'Funk',
+    title: 'Tell Me Something Good',
+    romaji: 'Tell Me Something Good',
+    artist: 'Rufus',
+    artistEn: 'Rufus',
+    year: 1974,
+    album: 'Rags to Rufus',
+    moods: ['戀愛', '夜晚'],
+    note: 'Stevie Wonder 寫給 Rufus 的歌，主唱 Chaka Khan 一唱成名。',
+  },
+  {
+    id: 'fire',
+    genre: 'Funk',
+    title: 'Fire',
+    romaji: 'Fire',
+    artist: 'Ohio Players',
+    artistEn: 'Ohio Players',
+    year: 1974,
+    album: 'Fire',
+    moods: ['派對', '夏日'],
+    note: '開頭的消防車警笛是招牌，登上美國告示牌單曲榜冠軍。',
+  },
+  {
+    id: 'give-up-the-funk',
+    genre: 'Funk',
+    title: 'Give Up the Funk (Tear the Roof off the Sucker)',
+    romaji: 'Give Up the Funk (Tear the Roof off the Sucker)',
+    artist: 'Parliament',
+    artistEn: 'Parliament',
+    year: 1975,
+    album: 'Mothership Connection',
+    moods: ['派對'],
+    note: 'George Clinton 打造的太空放克宇宙，「P-Funk」的代表作。',
+  },
+  {
+    id: 'september-ewf',
+    genre: 'Funk',
+    title: 'September',
+    romaji: 'September',
+    artist: 'Earth, Wind & Fire',
+    artistEn: 'Earth, Wind & Fire',
+    year: 1978,
+    album: 'The Best of Earth, Wind & Fire, Vol. 1',
+    moods: ['派對', '戀愛'],
+    note: '歌詞裡提到 9 月 21 日，讓它每年這天都會被大量播放。',
+  },
+  {
+    id: 'le-freak',
+    genre: 'Funk',
+    title: 'Le Freak',
+    romaji: 'Le Freak',
+    artist: 'Chic',
+    artistEn: 'Chic',
+    year: 1978,
+    album: "C'est Chic",
+    moods: ['派對', '都會'],
+    note: 'Nile Rodgers 的切分吉他配上迪斯可節奏，紐約夜店時代的代表。',
+  },
+
+  // ---------- 80 年代：電子放克 ----------
+  {
+    id: 'stomp',
+    genre: 'Funk',
+    title: 'Stomp!',
+    romaji: 'Stomp!',
+    artist: 'The Brothers Johnson',
+    artistEn: 'The Brothers Johnson',
+    year: 1980,
+    album: 'Light Up the Night',
+    moods: ['派對'],
+    note: 'Quincy Jones 製作，Louis Johnson 的拍弦貝斯是重點。',
+  },
+  {
+    id: 'more-bounce-to-the-ounce',
+    genre: 'Funk',
+    title: 'More Bounce to the Ounce',
+    romaji: 'More Bounce to the Ounce',
+    artist: 'Zapp',
+    artistEn: 'Zapp',
+    year: 1980,
+    album: 'Zapp',
+    moods: ['兜風', '夜晚'],
+    note: 'Roger Troutman 的 talk box 人聲，後來被西岸嘻哈大量取樣。',
+  },
+  {
+    id: 'super-freak',
+    genre: 'Funk',
+    title: 'Super Freak',
+    romaji: 'Super Freak',
+    artist: 'Rick James',
+    artistEn: 'Rick James',
+    year: 1981,
+    album: 'Street Songs',
+    moods: ['派對'],
+    note: "招牌貝斯 riff 後來被 MC Hammer 的〈U Can't Touch This〉取樣。",
+  },
+  {
+    id: 'kiss',
+    genre: 'Funk',
+    title: 'Kiss',
+    romaji: 'Kiss',
+    artist: 'Prince and the Revolution',
+    artistEn: 'Prince and the Revolution',
+    year: 1986,
+    album: 'Parade',
+    moods: ['戀愛', '派對'],
+    note: '極簡編曲只留下吉他、鼓機和假音，卻拿下告示牌單曲榜冠軍。',
+  },
+  {
+    id: 'word-up',
+    genre: 'Funk',
+    title: 'Word Up!',
+    romaji: 'Word Up!',
+    artist: 'Cameo',
+    artistEn: 'Cameo',
+    year: 1986,
+    album: 'Word Up!',
+    moods: ['派對', '都會'],
+    note: '電子放克的代表作，簡潔的合成器節奏到現在聽仍然很新。',
+  },
+
+  // ---------- 90 年代：放克搖滾與 Acid Jazz ----------
+  {
+    id: 'give-it-away',
+    genre: 'Funk',
+    title: 'Give It Away',
+    romaji: 'Give It Away',
+    artist: 'Red Hot Chili Peppers',
+    artistEn: 'Red Hot Chili Peppers',
+    year: 1991,
+    album: 'Blood Sugar Sex Magik',
+    moods: ['派對', '兜風'],
+    note: '搖滾加放克的代表，拿下葛萊美最佳硬式搖滾表演。',
+  },
+  {
+    id: 'virtual-insanity',
+    genre: 'Funk',
+    title: 'Virtual Insanity',
+    romaji: 'Virtual Insanity',
+    artist: 'Jamiroquai',
+    artistEn: 'Jamiroquai',
+    year: 1996,
+    album: 'Travelling Without Moving',
+    moods: ['都會'],
+    note: '會移動的地板 MV 成為經典，拿下 1997 年 MTV 音樂錄影帶大獎年度錄影帶。',
+  },
+
+  // ---------- 2000 年代：復古放克 ----------
+  {
+    id: 'little-l',
+    genre: 'Funk',
+    title: 'Little L',
+    romaji: 'Little L',
+    artist: 'Jamiroquai',
+    artistEn: 'Jamiroquai',
+    year: 2001,
+    album: 'A Funk Odyssey',
+    moods: ['派對', '戀愛'],
+    note: '迪斯可放克的復古律動，2000 年代初的舞池熱門曲。',
+  },
+  {
+    id: '100-days-100-nights',
+    genre: 'Funk',
+    title: '100 Days, 100 Nights',
+    romaji: '100 Days, 100 Nights',
+    artist: 'Sharon Jones & The Dap-Kings',
+    artistEn: 'Sharon Jones & The Dap-Kings',
+    year: 2007,
+    album: '100 Days, 100 Nights',
+    moods: ['夜晚', '戀愛'],
+    note: '用老派錄音方式重現 60 年代靈魂放克；Dap-Kings 也是 Amy Winehouse《Back to Black》的伴奏樂團。',
+  },
+
+  // ---------- 2010 年代：放克回歸流行 ----------
+  {
+    id: 'get-lucky',
+    genre: 'Funk',
+    title: 'Get Lucky',
+    romaji: 'Get Lucky',
+    artist: 'Daft Punk feat. Pharrell Williams & Nile Rodgers',
+    artistEn: 'Daft Punk feat. Pharrell Williams & Nile Rodgers',
+    year: 2013,
+    album: 'Random Access Memories',
+    moods: ['夏日', '派對'],
+    note: '找來 Chic 的 Nile Rodgers 彈吉他，拿下葛萊美年度製作。',
+  },
+  {
+    id: 'uptown-funk',
+    genre: 'Funk',
+    title: 'Uptown Funk',
+    romaji: 'Uptown Funk',
+    artist: 'Mark Ronson feat. Bruno Mars',
+    artistEn: 'Mark Ronson feat. Bruno Mars',
+    year: 2014,
+    album: 'Uptown Special',
+    moods: ['派對', '都會'],
+    note: '在美國告示牌單曲榜蟬聯 14 週冠軍。',
+  },
+  {
+    id: 'dean-town',
+    genre: 'Funk',
+    title: 'Dean Town',
+    romaji: 'Dean Town',
+    artist: 'Vulfpeck',
+    artistEn: 'Vulfpeck',
+    year: 2016,
+    album: 'The Beautiful Game',
+    moods: ['兜風'],
+    note: '以貝斯手 Joe Dart 飛快的貝斯旋律聞名的純演奏曲。',
+  },
+  {
+    id: '24k-magic',
+    genre: 'Funk',
+    title: '24K Magic',
+    romaji: '24K Magic',
+    artist: 'Bruno Mars',
+    artistEn: 'Bruno Mars',
+    year: 2016,
+    album: '24K Magic',
+    moods: ['派對', '夜晚'],
+    note: '向 80 年代放克致敬，同名專輯拿下葛萊美年度專輯。',
+  },
+
+  // ---------- 2020 年代 ----------
+  {
+    id: 'skate',
+    genre: 'Funk',
+    title: 'Skate',
+    romaji: 'Skate',
+    artist: 'Silk Sonic',
+    artistEn: 'Silk Sonic',
+    year: 2021,
+    album: 'An Evening with Silk Sonic',
+    moods: ['夏日', '戀愛'],
+    note: 'Bruno Mars 和 Anderson .Paak 組成的雙人組，復刻 70 年代靈魂放克。',
+  },
+  {
+    id: 'about-damn-time',
+    genre: 'Funk',
+    title: 'About Damn Time',
+    romaji: 'About Damn Time',
+    artist: 'Lizzo',
+    artistEn: 'Lizzo',
+    year: 2022,
+    album: 'Special',
+    moods: ['派對'],
+    note: '迪斯可放克的回歸，拿下葛萊美年度製作。',
   },
 ];
