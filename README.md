@@ -10,7 +10,7 @@
 | FUNK & SOUL TRAIN | 新奧爾良站 | Funk、Soul | https://ginichang1214.github.io/ginimusic-collection/funk-soul-train/ |
 | HIP HOP R&B TOWN | 亞特蘭大站 | Hip Hop、R&B | https://ginichang1214.github.io/ginimusic-collection/hiphop-rnb-town/ |
 
-目前收錄 133 首：東京站 33、台北站 25、新奧爾良站 46、亞特蘭大站 29。
+目前收錄 246 首：東京站 33、台北站 86、新奧爾良站 59、亞特蘭大站 68。
 
 ## 網站上有什麼
 

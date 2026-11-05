@@ -27,8 +27,8 @@ window.GROOVE_LINES = [
     tab: 'TAIPEI IMAGE：台北站',
     path: 'taipei-image/',
     genres: '華語 · 流行',
-    story: '2000 年代，R&B 和嘻哈跟著 KTV 包廂和 MSN 暱稱走進每個人的青春；到了串流時代，台北的饒舌、爵士嘻哈和城市流行在 Live House 和 StreetVoice 長出新的樣子。',
-    picks: ['bu-de-bu-ai', 'guan-yu-xiao-xiong', 'beyond-mediocrity'],
+    story: '從 90 年代的華語天后，到 2000 年代跟著 KTV 包廂和 MSN 暱稱走進每個人青春的 R&B 與嘻哈；到了串流時代，台北的樂團、饒舌和城市流行又在 Live House 和 StreetVoice 長出新的樣子。',
+    picks: ['chun-feng-chui', 'guan-yu-xiao-xiong', 'beyond-mediocrity'],
   },
   {
     id: 'neworleans',
@@ -42,7 +42,7 @@ window.GROOVE_LINES = [
     path: 'funk-soul-train/',
     genres: 'Funk · Soul',
     story: '新奧爾良是爵士樂的故鄉，街頭遊行的 second line 節奏養出了 The Meters 這樣的放克樂團。列車名字致敬 1970 年代的黑人音樂節目《Soul Train》，載著貝斯和銅管從 Motown 一路開到 Bruno Mars。',
-    picks: ['cissy-strut', 'whats-going-on', 'uptown-funk'],
+    picks: ['september-ewf', 'cissy-strut', 'whats-going-on'],
   },
   {
     id: 'atlanta',
