@@ -1,13 +1,16 @@
-# City Pop 集結
+# TOKYO NIGHTS 東京夜色
 
-精選 70、80 年代日本 City Pop 名曲的單頁網站，總共 18 首、14 位歌手，年代從 1976 到 1985。
+日本 City Pop 名曲的單頁網站，範圍從 1960 到 2026 年：60 年代的歌謠曲源頭、70～80 年代的黃金期、90 年代的澀谷系，一路到 2020 年代的新世代。目前收錄 33 首、28 位歌手。
 
 - 依氛圍篩選：#夜晚、#夏日、#都會、#戀愛、#兜風
+- 依年代篩選：60 年代到 2020 年代，按鈕上會顯示每個年代有幾首
 - 可以搜尋歌名、歌手或專輯，也能依年份或歌手排序
-- 「今晚聽哪首？」按鈕會隨機挑一首推薦
-- 每首歌都有 YouTube、Spotify、Apple Music 的搜尋連結，本站不提供音檔
+- 「今晚聽哪首？」按鈕會從目前篩選結果中隨機挑一首
+- 每首歌都有 YouTube、Spotify、Apple Music 連結：有填直接連結就開那首歌，沒填就開平台搜尋頁。本站不提供音檔
 
 純 HTML、CSS、JavaScript，不需要安裝任何套件。
+
+線上網站：https://ginichang1214.github.io/citypop-collection/
 
 ## 檔案
 
@@ -39,15 +42,21 @@ python -m http.server 5173
   romaji: 'Romaji Title',
   artist: '歌手（日文）',
   artistEn: 'Artist Name',
-  year: 1983,
+  year: 1983,               // 1960 到 2026，會自動分到對應年代
   album: '專輯名稱',         // 單曲填 null
   moods: ['夜晚', '都會'],   // 可用：夜晚、夏日、都會、戀愛、兜風
   note: '一句話介紹。',
+  youtube: 'https://music.youtube.com/watch?v=…', // 選填：直接連到這首歌
+  // spotify、appleMusic 也可以照樣填
 },
 ```
 
-## 發佈到 GitHub Pages
+## 更新線上網站
 
-1. 把這個資料夾推到 GitHub 的公開儲存庫
-2. 到儲存庫的 **Settings → Pages**，Source 選 **Deploy from a branch**，分支選 `main`、資料夾選 `/ (root)`
-3. 等一兩分鐘，網站就會出現在 `https://<你的帳號>.github.io/<儲存庫名稱>/`
+網站用 GitHub Pages 從 `main` 分支發佈。改完後提交並推送，一兩分鐘內就會更新：
+
+```bash
+git add .
+git commit -m "新增歌曲"
+git push
+```

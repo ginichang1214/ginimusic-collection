@@ -1,7 +1,9 @@
 // City Pop 曲目資料
 // 新增歌曲：照同樣格式在陣列裡加一筆即可，id 不可重複。
+// year 可填 1960 到 2026，網站會自動分到對應的年代篩選。
 // moods 可用：夜晚、夏日、都會、戀愛、兜風
 // album 若是單曲沒有收錄專輯，填 null。
+// 選填 youtube / spotify / appleMusic：填了就直接連到那首歌，沒填就連到平台搜尋頁。
 window.CITY_POP_TRACKS = [
   {
     id: 'plastic-love',
@@ -200,5 +202,183 @@ window.CITY_POP_TRACKS = [
     album: "MIDNIGHT CRUISIN'",
     moods: ['夜晚', '兜風'],
     note: '濃濃的 AOR 色彩，深夜開車的完美背景音樂。',
+  },
+
+  // ---------- 60 年代：歌謠曲裡的都會源頭 ----------
+  {
+    id: 'blue-light-yokohama',
+    title: 'ブルー・ライト・ヨコハマ',
+    romaji: 'Blue Light Yokohama',
+    artist: 'いしだあゆみ',
+    artistEn: 'Ayumi Ishida',
+    year: 1968,
+    album: null,
+    moods: ['夜晚', '都會', '戀愛'],
+    note: '筒美京平作曲，港都橫濱的夜景與燈光，City Pop 都會感的歌謠曲源頭。',
+  },
+  {
+    id: 'yoake-no-scat',
+    title: '夜明けのスキャット',
+    romaji: 'Yoake no Scat',
+    artist: '由紀さおり',
+    artistEn: 'Saori Yuki',
+    year: 1969,
+    album: null,
+    moods: ['夜晚', '戀愛'],
+    note: '整首用「啦啦啦」哼唱的爵士感歌謠；2011 年與美國樂團 Pink Martini 合作的專輯《1969》在海外走紅。',
+  },
+
+  // ---------- 70 年代：City Pop 的原點 ----------
+  {
+    id: 'kaze-wo-atsumete',
+    title: '風をあつめて',
+    romaji: 'Kaze wo Atsumete',
+    artist: 'はっぴいえんど',
+    artistEn: 'Happy End',
+    year: 1971,
+    album: '風街ろまん',
+    moods: ['都會'],
+    note: '細野晴臣、大瀧詠一、松本隆、鈴木茂組成的樂團，開創用日語唱搖滾；這首也出現在電影《愛情，不用翻譯》。',
+  },
+  {
+    id: 'down-town',
+    title: 'DOWN TOWN',
+    romaji: 'Down Town',
+    artist: 'シュガー・ベイブ',
+    artistEn: 'Sugar Babe',
+    year: 1975,
+    album: 'SONGS',
+    moods: ['都會', '夜晚'],
+    note: '山下達郎、大貫妙子待過的樂團，被視為 City Pop 的原點之一。',
+  },
+
+  // ---------- 90 年代：澀谷系與都會靈魂樂 ----------
+  {
+    id: 'seppun',
+    title: '接吻 -kiss-',
+    romaji: 'Seppun -kiss-',
+    artist: 'ORIGINAL LOVE',
+    artistEn: 'Original Love',
+    year: 1993,
+    album: 'SUNNY SIDE OF ORIGINAL LOVE',
+    moods: ['戀愛', '夜晚'],
+    note: '日劇主題曲帶紅的情歌，90 年代都會靈魂樂的代表作。',
+  },
+  {
+    id: 'tokyo-wa-yoru-no-shichiji',
+    title: '東京は夜の七時',
+    romaji: 'Tokyo wa Yoru no Shichiji',
+    artist: 'ピチカート・ファイヴ',
+    artistEn: 'Pizzicato Five',
+    year: 1993,
+    album: null,
+    moods: ['都會', '夜晚'],
+    note: '澀谷系代表樂團的經典單曲，歌名借自矢野顯子的歌。',
+  },
+  {
+    id: 'konya-wa-boogie-back',
+    title: '今夜はブギー・バック',
+    romaji: 'Konya wa Boogie Back',
+    artist: 'スチャダラパー・小沢健二',
+    artistEn: 'Schadaraparr & Kenji Ozawa',
+    year: 1994,
+    album: null,
+    moods: ['夜晚', '都會'],
+    note: '嘻哈團體與澀谷系歌手的合作，讓日語饒舌打進主流的經典。',
+  },
+
+  // ---------- 2000 年代 ----------
+  {
+    id: 'aliens',
+    title: 'エイリアンズ',
+    romaji: 'Aliens',
+    artist: 'キリンジ',
+    artistEn: 'KIRINJI',
+    year: 2000,
+    album: '3',
+    moods: ['夜晚', '都會', '戀愛'],
+    note: '堀込兄弟的名曲，深夜郊外的浪漫，被許多歌手翻唱過。',
+  },
+
+  // ---------- 2010 年代：新世代 City Pop ----------
+  {
+    id: 'climax-night',
+    title: 'Climax Night',
+    romaji: 'Climax Night',
+    artist: 'Yogee New Waves',
+    artistEn: 'Yogee New Waves',
+    year: 2014,
+    album: 'PARAISO',
+    moods: ['夜晚', '都會'],
+    note: '東京獨立樂團的出道代表作，新世代 City Pop 風潮的開端之一。',
+  },
+  {
+    id: 'summer-soul',
+    title: 'Summer Soul',
+    romaji: 'Summer Soul',
+    artist: 'cero',
+    artistEn: 'cero',
+    year: 2015,
+    album: 'Obscure Ride',
+    moods: ['夏日', '夜晚'],
+    note: '融合靈魂樂、爵士與嘻哈的夏夜律動。',
+  },
+  {
+    id: 'stay-tune',
+    title: 'STAY TUNE',
+    romaji: 'Stay Tune',
+    artist: 'Suchmos',
+    artistEn: 'Suchmos',
+    year: 2016,
+    album: 'LOVE&VICE',
+    moods: ['都會', '兜風'],
+    note: '2016 年 HONDA VEZEL 汽車廣告歌，讓 Suchmos 知名度一口氣衝高。',
+  },
+  {
+    id: 'tokyo-flash',
+    title: '東京フラッシュ',
+    romaji: 'Tokyo Flash',
+    artist: 'Vaundy',
+    artistEn: 'Vaundy',
+    year: 2019,
+    album: 'strobo',
+    moods: ['都會', '夜晚', '戀愛'],
+    note: '2019 年只在 YouTube 發表就在社群爆紅，兩個月內 MV 突破百萬觀看。',
+  },
+
+  // ---------- 2020 年代 ----------
+  {
+    id: 'kanashii-kurai-diamond',
+    title: '悲しいくらいダイヤモンド',
+    romaji: 'Kanashii Kurai Diamond',
+    artist: '流線形/一十三十一',
+    artistEn: 'Ryusenkei & Hitomitoi',
+    year: 2020,
+    album: 'Talio',
+    moods: ['夜晚', '戀愛'],
+    note: '為日劇《Talio》打造的 City Pop 原聲帶，這首是片尾主題曲。',
+  },
+  {
+    id: 'loves-on-fire',
+    title: "LOVE'S ON FIRE",
+    romaji: "Love's on Fire",
+    artist: '山下達郎',
+    artistEn: 'Tatsuro Yamashita',
+    year: 2022,
+    album: 'SOFTLY',
+    moods: ['夜晚', '都會'],
+    note: '睽違 11 年的新專輯《SOFTLY》主打歌，電子聲響配上山下達郎招牌的流行感。',
+  },
+  {
+    id: 'taxi-boy',
+    title: 'タクシー・ボーイ',
+    romaji: 'Taxi Boy',
+    artist: 'Japanese City Pop',
+    artistEn: 'Japanese City Pop',
+    year: 2025,
+    album: 'Plastic（プラスチック）',
+    moods: ['都會', '夜晚'],
+    note: '2025 年 12 月發行的新世代 City Pop，收錄在專輯《Plastic》。',
+    youtube: 'https://music.youtube.com/watch?v=yeBXtMzXyqs',
   },
 ];
