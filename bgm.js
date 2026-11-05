@@ -264,9 +264,53 @@
     }
   }
 
+  // ---------- 手機（特別是 iPhone）----------
+  // iPhone 的靜音開關會把 Web Audio 一起靜音，但 <audio> 播放的聲音不受影響。
+  // 新版 Safari 可以直接把網頁的音訊類型設成「播放」；舊版就同時播一段無聲的 <audio>，
+  // 讓整頁的聲音改走媒體播放的通道。都要在訪客按下按鈕的當下呼叫才有效。
+  let silentAudio = null;
+  function silentWavUrl() {
+    const rate = 8000;
+    const n = rate / 2; // 0.5 秒的無聲 8-bit WAV
+    const buf = new ArrayBuffer(44 + n);
+    const v = new DataView(buf);
+    const str = (o, s) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+    str(0, 'RIFF'); v.setUint32(4, 36 + n, true); str(8, 'WAVE');
+    str(12, 'fmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, rate, true); v.setUint32(28, rate, true); v.setUint16(32, 1, true); v.setUint16(34, 8, true);
+    str(36, 'data'); v.setUint32(40, n, true);
+    for (let i = 0; i < n; i++) v.setUint8(44 + i, 128);
+    return URL.createObjectURL(new Blob([buf], { type: 'audio/wav' }));
+  }
+  function unlockMobileAudio() {
+    try {
+      if (navigator.audioSession) navigator.audioSession.type = 'playback';
+    } catch {
+      // 不支援就算了，下面的無聲 <audio> 會接手
+    }
+    if (!silentAudio) {
+      silentAudio = document.createElement('audio');
+      silentAudio.src = silentWavUrl();
+      silentAudio.loop = true;
+      silentAudio.setAttribute('playsinline', '');
+      silentAudio.preload = 'auto';
+    }
+    silentAudio.play().catch(() => {});
+  }
+
   async function play() {
+    unlockMobileAudio();
     if (!ctx) setup();
-    await ctx.resume();
+    try {
+      await ctx.resume();
+    } catch {
+      // 有些手機第一次會失敗，下面再檢查一次
+    }
+    if (ctx.state !== 'running') {
+      // 手機被來電或其他 App 打斷後，音訊可能卡在暫停狀態，請訪客再按一次
+      button.querySelector('.bgm-text span').textContent = '手機擋住了聲音・請再點一次';
+      return;
+    }
     playing = true;
     nextTime = ctx.currentTime + 0.08;
     step = 0;
@@ -287,7 +331,11 @@
     master.gain.cancelScheduledValues(now);
     master.gain.setValueAtTime(master.gain.value, now);
     master.gain.linearRampToValueAtTime(0, now + 0.5);
-    setTimeout(() => !playing && ctx.suspend(), 600);
+    setTimeout(() => {
+      if (playing) return;
+      ctx.suspend();
+      silentAudio?.pause();
+    }, 600);
     update();
   }
 
@@ -320,7 +368,12 @@
   }
 
   if (window.AudioContext || window.webkitAudioContext) {
+    // 手機點一下有時會觸發兩次 click（剛播就被暫停，聽起來像沒聲音），太接近的第二次就忽略
+    let lastToggle = 0;
     button.addEventListener('click', () => {
+      const now = Date.now();
+      if (now - lastToggle < 500) return;
+      lastToggle = now;
       resumeOnShow = false;
       if (playing) pause();
       else play();
