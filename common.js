@@ -166,7 +166,7 @@
    * onSelect(track)：點一排時呼叫
    * 放進畫面後要呼叫 start()；show(track) 會把那首歌翻到它所屬的那排
    */
-  function createBoard({ title, rows: defs, tagLabel, tagOf, colorOf, onSelect, interval = 5000 }) {
+  function createBoard({ title, rows: defs, tagLabel, tagOf, colorOf, onSelect, interval = 5000, riders }) {
     const rows = defs.map((def, i) => {
       const row = h('button', { type: 'button', class: 'board-row' },
         flap(2),
@@ -187,10 +187,15 @@
       clock.textContent = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
     };
 
+    // 累計旅客：有傳 riders()（回傳人數的函式）才顯示，讀到數字後用翻牌跳出來
+    const ridersEl = riders
+      ? h('span', { class: 'board-riders', hidden: true }, h('span', { class: 'riders-label' }, '累計旅客'), flap(7))
+      : null;
+
     const el = h('div', { class: 'board', role: 'group', 'aria-label': `${title}：點一排跳到那首歌` },
       h('div', { class: 'board-top', 'aria-hidden': 'true' },
         h('span', { class: 'board-title' }, title),
-        clock),
+        h('span', { class: 'board-meta' }, ridersEl, clock)),
       h('div', { class: 'board-row board-head', 'aria-hidden': 'true' },
         h('span', {}, '月台'), h('span', {}, tagLabel), h('span', {}, '年份'), h('span', {}, '下一首'), h('span', {}, '狀態')),
       ...rows,
@@ -239,6 +244,16 @@
     function start() {
       tick();
       setInterval(tick, 10000);
+      if (ridersEl) {
+        Promise.resolve()
+          .then(riders)
+          .then((n) => {
+            if (!Number.isFinite(n) || n < 0) return;
+            ridersEl.hidden = false;
+            setFlap(ridersEl.lastChild, String(n).padStart(7, '0').slice(-7), true);
+          })
+          .catch(() => {}); // 讀不到人數（例如統計服務還沒開放）就不顯示
+      }
       fitTitles();
       rows.forEach((r) => r.def.pool.length && setRow(r, pickFor(r), false));
       let resizeTimer;

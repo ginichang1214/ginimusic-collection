@@ -82,6 +82,7 @@
       colorOf: (t) => lineById[t.line].color,
       onSelect: (t) => catalog.spotlight(t),
       interval: 4500,
+      riders: goatCounterTotal,
     });
 
     // 路線圖：四條路線並行，每一站是一個年代，點了就篩選那個年代的歌
@@ -105,6 +106,15 @@
     els.heroBoard.replaceChildren(board.el, route);
     board.start();
     return { onPick: (t) => board.show(t) };
+  }
+
+  // 累計旅客：讀 GoatCounter 公開的全站累計人數
+  // （要在 GoatCounter 的設定裡打開「Allow adding visitor counts on your website」才讀得到）
+  async function goatCounterTotal() {
+    const res = await fetch('https://ginichang.goatcounter.com/counter/TOTAL.json');
+    if (!res.ok) throw new Error(`GoatCounter ${res.status}`);
+    const data = await res.json();
+    return parseInt(String(data.count).replace(/[^0-9]/g, ''), 10);
   }
 
   // 右側慢慢轉的黑膠唱片（反光固定不動，只有唱片在轉）；標籤上四條線是四條路線的顏色

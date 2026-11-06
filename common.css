@@ -139,6 +139,13 @@ a { color: inherit; }
   font-size: 1rem;
   letter-spacing: 0.08em;
 }
+.board-meta { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 16px; }
+/* 累計旅客：小一號的翻牌數字 */
+.board-riders { display: inline-flex; align-items: center; gap: 8px; }
+.board-riders[hidden] { display: none; }
+.riders-label { color: #8a91a1; font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.1em; }
+.board-riders .flap { gap: 2px; }
+.board-riders .flap b { width: 18px; height: 26px; font-size: 15px; }
 .board-row {
   display: grid;
   grid-template-columns: 64px 170px 118px 1fr 100px;
