@@ -82,7 +82,7 @@
       colorOf: (t) => lineById[t.line].color,
       onSelect: (t) => catalog.spotlight(t),
       interval: 4500,
-      riders: goatCounterTotal,
+      riders: SHOW_RIDERS ? goatCounterTotal : null,
     });
 
     // 路線圖：四條路線並行，每一站是一個年代，點了就篩選那個年代的歌
@@ -107,6 +107,10 @@
     board.start();
     return { onPick: (t) => board.show(t) };
   }
+
+  // 「累計旅客」翻牌計數器的開關：目前先隱藏，人數多了想公開時把 false 改成 true。
+  // 想先偷看效果，網址後面加 ?riders 就會出現（只影響自己這次瀏覽）。
+  const SHOW_RIDERS = false || new URLSearchParams(location.search).has('riders');
 
   // 累計旅客：讀 GoatCounter 公開的全站累計人數
   // （要在 GoatCounter 的設定裡打開「Allow adding visitor counts on your website」才讀得到）
