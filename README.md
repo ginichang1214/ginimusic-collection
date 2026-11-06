@@ -7,17 +7,17 @@
 | GROOVE STATION（首頁） | 總站 | 四條路線全部 | https://ginichang1214.github.io/ginimusic-collection/ |
 | TOKYO NIGHTS | 東京站 | 日本 City Pop | https://ginichang1214.github.io/ginimusic-collection/tokyo-nights/ |
 | TAIPEI IMAGE | 台北站 | 華語流行、R&B、嘻哈 | https://ginichang1214.github.io/ginimusic-collection/taipei-image/ |
-| FUNK & SOUL TRAIN | 新奧爾良站 | Funk、Soul | https://ginichang1214.github.io/ginimusic-collection/funk-soul-train/ |
+| FUNK & SOUL TRAIN | 紐奧良站 | Funk、Soul | https://ginichang1214.github.io/ginimusic-collection/funk-soul-train/ |
 | HIP HOP R&B TOWN | 亞特蘭大站 | Hip Hop、R&B | https://ginichang1214.github.io/ginimusic-collection/hiphop-rnb-town/ |
 
-目前收錄 246 首：東京站 33、台北站 86、新奧爾良站 59、亞特蘭大站 68。
+目前收錄 246 首：東京站 33、台北站 86、紐奧良站 59、亞特蘭大站 68。
 
 ## 網站上有什麼
 
 - **車站分頁**：每一頁最上面都有五個分頁，可以在首頁和四個車站之間切換。
 - **翻牌看板**：
   - 首頁的看板有四個月台，一條路線一個，每排輪流翻出那條路線的年代和歌名，點一排就跳到那首歌。
-  - 各站的「本站時刻表」也是翻牌看板，上面還有跑馬燈到站廣播，下面有「下一站」連結。四站繞成一圈：東京 → 台北 → 新奧爾良 → 亞特蘭大 → 東京。
+  - 各站的「本站時刻表」也是翻牌看板，上面還有跑馬燈到站廣播，下面有「下一站」連結。四站繞成一圈：東京 → 台北 → 紐奧良 → 亞特蘭大 → 東京。
 - **路線導覽車票**：首頁的四張車票，有每站的小故事和代表曲。
 - **集章**：去過的車站會在首頁車票上蓋「已到站」章，四站集滿會顯示「全線制霸」。記錄只存在訪客自己的瀏覽器裡。
 - **背景音樂**：首頁右下角的〈Last Train Groove 末班車〉是本站原創，用瀏覽器即時合成，不需要音檔。瀏覽器不允許網頁自己出聲，所以要等訪客按下才播放。
@@ -78,7 +78,7 @@ python -m http.server 5173
 
 ## 重新產生分享預覽圖
 
-改了網站名稱或視覺後，先開本機伺服器（台北、新奧爾良、亞特蘭大三站是直接截車站頁面），再用 Microsoft Edge 產生五張預覽圖：
+改了網站名稱或視覺後，先開本機伺服器（台北、紐奧良、亞特蘭大三站是直接截車站頁面），再用 Microsoft Edge 產生五張預覽圖：
 
 ```bash
 bash og/render.sh

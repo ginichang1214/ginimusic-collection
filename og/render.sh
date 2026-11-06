@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 重新產生五張分享預覽圖（1200 × 630 PNG），需要 Microsoft Edge。
 # 用法：在專案根目錄執行  bash og/render.sh
-# 台北站、新奧爾良站、亞特蘭大站直接截各站頁面（網址加 ?og 會切成預覽圖模式），要先開本機伺服器：
+# 台北站、紐奧良站、亞特蘭大站直接截各站頁面（網址加 ?og 會切成預覽圖模式），要先開本機伺服器：
 #   python -m http.server 5173
 set -euo pipefail
 
@@ -21,7 +21,7 @@ shoot() { # $1 = 輸出檔, $2 = 網址
     --user-data-dir="$(cygpath -w "$profile")" \
     --screenshot="$(cygpath -w "$ROOT/$1")" \
     "$2" >/dev/null 2>&1
-  rm -rf "$profile"
+  rm -rf "$profile" 2>/dev/null || true # Edge 有時還沒放開暫存資料夾，刪不掉就算了
   echo "已產生 $1"
 }
 template() { echo "file:///$(cygpath -m "$ROOT/og/$1")?${2:-}"; }
@@ -38,5 +38,5 @@ if curl -s -o /dev/null "$SERVER/"; then
     shoot "$dir/og-image.png" "$SERVER/$dir/?og"
   done
 else
-  echo "沒有偵測到 $SERVER，跳過台北站、新奧爾良站、亞特蘭大站（先執行 python -m http.server 5173）"
+  echo "沒有偵測到 $SERVER，跳過台北站、紐奧良站、亞特蘭大站（先執行 python -m http.server 5173）"
 fi

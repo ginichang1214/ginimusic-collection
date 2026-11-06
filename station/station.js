@@ -200,7 +200,7 @@
       art.append(h('div', { class: 'mrt' }, h('div', { class: 'mrt-train' })));
     },
 
-    // 新奧爾良：70 年代放克海報的圓點直條，慢慢上下滑動；底下是法國區的鐵欄杆陽台
+    // 紐奧良：70 年代放克海報的圓點直條，慢慢上下滑動；底下是法國區的鐵欄杆陽台
     neworleans(art) {
       const COLORS = ['#6e1d36', '#a8323a', '#d95f2e', '#eea23f', '#f4dcb4'];
       const cols = h('div', { class: 'funk-cols' });
